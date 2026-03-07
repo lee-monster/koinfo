@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar scrolled">
+    <div class="container">
+      <a href="index.html" class="nav-brand"><span class="nav-flag"></span><span class="brand-text"><span class="brand-name"></span><span class="brand-sub" data-i18n="common.tagline"></span></span></a>
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="study.html" data-i18n="nav.study">Study</a></li>
+        <li><a href="work.html" data-i18n="nav.work">Work</a></li>
+        <li><a href="visa.html" data-i18n="nav.visa">Visa</a></li>
+        <li><a href="life.html" class="active" data-i18n="nav.life">Life</a></li>
+        <li><a href="business.html" data-i18n="nav.business">Business</a></li>
+        <li><a href="community.html" data-i18n="nav.community">Community</a></li>
+        <li><button class="lang-btn" id="lang-toggle" onclick="toggleLanguage()">한국어</button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="page-header"><h1 data-i18n="life.title">Life in Korea</h1></section>
+  <div id="related-news" data-page="life" class="container news-related-container"></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="accordion">
+        <div class="accordion-item"><div class="accordion-header"><div class="accordion-header-text"><h3 data-i18n="life.housing.title">Housing</h3><p data-i18n="life.housing.desc">Rental types, prices, how to find</p></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><div class="accordion-content" data-i18n-html="life.housing.content"></div></div></div>
+        <div class="accordion-item"><div class="accordion-header"><div class="accordion-header-text"><h3 data-i18n="life.transport.title">Transportation</h3><p data-i18n="life.transport.desc">Metro, bus, T-money card</p></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><div class="accordion-content" data-i18n-html="life.transport.content"></div></div></div>
+        <div class="accordion-item"><div class="accordion-header"><div class="accordion-header-text"><h3 data-i18n="life.health.title">Healthcare</h3><p data-i18n="life.health.desc">Insurance, hospitals, emergency</p></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><div class="accordion-content" data-i18n-html="life.health.content"></div></div></div>
+        <div class="accordion-item"><div class="accordion-header"><div class="accordion-header-text"><h3 data-i18n="life.banking.title">Banking & Finance</h3><p data-i18n="life.banking.desc">Open account, money transfer</p></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><div class="accordion-content" data-i18n-html="life.banking.content"></div></div></div>
+        <div class="accordion-item"><div class="accordion-header"><div class="accordion-header-text"><h3 data-i18n="life.phone.title">Phone & Internet</h3><p data-i18n="life.phone.desc">Mobile, SIM card, internet</p></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><div class="accordion-content" data-i18n-html="life.phone.content"></div></div></div>
+        <div class="accordion-item"><div class="accordion-header"><div class="accordion-header-text"><h3 data-i18n="life.culture.title">Culture & Adaptation</h3><p data-i18n="life.culture.desc">Korean culture, customs, adaptation tips</p></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><div class="accordion-content" data-i18n-html="life.culture.content"></div></div></div>
+        <div class="accordion-item"><div class="accordion-header"><div class="accordion-header-text"><h3 data-i18n="life.transitcard.title">Transit Card / K-Pass</h3><p data-i18n="life.transitcard.desc">Monthly cards, transit savings tips</p></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><div class="accordion-content" data-i18n-html="life.transitcard.content"></div></div></div>
+        <div class="accordion-item"><div class="accordion-header"><div class="accordion-header-text"><h3 data-i18n="life.remittance.title">Remittance</h3><p data-i18n="life.remittance.desc">Money transfer service comparison</p></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><div class="accordion-content" data-i18n-html="life.remittance.content"></div></div></div>
+      </div>
+
+      <h3 class="accordion-subtitle" data-i18n="life.communitySection"></h3>
+      <div class="accordion">
+        <div class="accordion-item"><div class="accordion-header"><div class="accordion-header-text"><h3 data-i18n="life.embassy.title">Embassy</h3><p data-i18n="life.embassy.desc">Embassy information</p></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><div class="accordion-content" data-i18n-html="life.embassy.content"></div></div></div>
+        <div class="accordion-item"><div class="accordion-header"><div class="accordion-header-text"><h3 data-i18n="life.groups.title">Community Groups</h3><p data-i18n="life.groups.desc">Organizations, online groups</p></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><div class="accordion-content" data-i18n-html="life.groups.content"></div></div></div>
+        <div class="accordion-item"><div class="accordion-header"><div class="accordion-header-text"><h3 data-i18n="life.support.title">Support Centers</h3><p data-i18n="life.support.desc">Hotlines, foreigner support centers</p></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><div class="accordion-content" data-i18n-html="life.support.content"></div></div></div>
+        <div class="accordion-item"><div class="accordion-header"><div class="accordion-header-text"><h3 data-i18n="life.apps.title">Useful Apps & Websites</h3><p data-i18n="life.apps.desc">Must-have apps for life in Korea</p></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><div class="accordion-content" data-i18n-html="life.apps.content"></div></div></div>
+        <div class="accordion-item"><div class="accordion-header"><div class="accordion-header-text"><h3 data-i18n="life.global.title">Seoul Global Center</h3><p data-i18n="life.global.desc">Full services for foreigners in Seoul</p></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><div class="accordion-content" data-i18n-html="life.global.content"></div></div></div>
+        <div class="accordion-item"><div class="accordion-header"><div class="accordion-header-text"><h3 data-i18n="life.multicultural.title">Multicultural Family Center</h3><p data-i18n="life.multicultural.desc">Danuri portal, multilingual consultation</p></div><span class="accordion-arrow">▼</span></div><div class="accordion-body"><div class="accordion-content" data-i18n-html="life.multicultural.content"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="footer-brand"></div><div class="footer-flags"></div><p data-i18n="footer.text"></p></footer>
+
+  <script src="js/site-config.js"></script>
+  <script>
+    var langScript = document.createElement('script');
+    langScript.src = 'sites/' + SITE_KEY + '/lang.js';
+    langScript.onload = function() {
+      var mainScript = document.createElement('script');
+      mainScript.src = 'js/main.js';
+      mainScript.onload = function() {
+        var extraScript = document.createElement('script');
+        extraScript.src = 'js/news.js';
+        document.head.appendChild(extraScript);
+      };
+      document.head.appendChild(mainScript);
+    };
+    document.head.appendChild(langScript);
+  </script>
+</body>
+</html>
