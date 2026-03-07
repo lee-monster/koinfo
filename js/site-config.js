@@ -139,8 +139,8 @@ function detectSite() {
   const params = new URLSearchParams(window.location.search);
   const siteParam = params.get('site');
   if (siteParam && SITES[siteParam]) return siteParam;
-  // Default
-  return 'indo';
+  // No subdomain and no param → landing page
+  return 'main';
 }
 
 const SITE_KEY = detectSite();

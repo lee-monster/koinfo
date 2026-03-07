@@ -46,19 +46,22 @@
 
   <script src="js/site-config.js"></script>
   <script>
-    var langScript = document.createElement('script');
-    langScript.src = 'sites/' + SITE_KEY + '/lang.js';
-    langScript.onload = function() {
-      var mainScript = document.createElement('script');
-      mainScript.src = 'js/main.js';
-      mainScript.onload = function() {
-        var extraScript = document.createElement('script');
-        extraScript.src = 'js/news.js';
-        document.head.appendChild(extraScript);
+    if (SITE_KEY === 'main') { window.location.replace('landing.html'); }
+    else {
+      var langScript = document.createElement('script');
+      langScript.src = 'sites/' + SITE_KEY + '/lang.js';
+      langScript.onload = function() {
+        var mainScript = document.createElement('script');
+        mainScript.src = 'js/main.js';
+        mainScript.onload = function() {
+          var extraScript = document.createElement('script');
+          extraScript.src = 'js/news.js';
+          document.head.appendChild(extraScript);
+        };
+        document.head.appendChild(mainScript);
       };
-      document.head.appendChild(mainScript);
-    };
-    document.head.appendChild(langScript);
+      document.head.appendChild(langScript);
+    }
   </script>
 </body>
 </html>

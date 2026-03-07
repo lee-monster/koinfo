@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KoInfo - Your Guide to Life in Korea</title>
+  <meta name="description" content="KoInfo - Comprehensive information platform for foreigners living in Korea">
+  <meta name="theme-color" content="#1E3A5F">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231E3A5F'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Arial,sans-serif' font-weight='800' font-size='20' fill='%23FFFFFF'%3EK%3C/text%3E%3C/svg%3E">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+      color: #1F2937;
+      background: #0F172A;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Hero with slideshow */
+    .landing-hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .landing-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+    }
+    .landing-slide.active { opacity: 1; }
+
+    .landing-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0.5) 0%,
+        rgba(15, 23, 42, 0.65) 50%,
+        rgba(15, 23, 42, 0.85) 100%
+      );
+      z-index: 1;
+    }
+
+    .landing-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+      max-width: 900px;
+    }
+
+    .landing-logo {
+      font-size: 4.5rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -2px;
+      margin-bottom: 0.3rem;
+    }
+    .landing-logo span { color: #60A5FA; }
+
+    .landing-tagline {
+      font-size: 1.3rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 3.5rem;
+      font-weight: 300;
+    }
+
+    /* Site cards */
+    .site-cards {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .site-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 260px;
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      text-decoration: none;
+      color: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .site-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: inherit;
+      opacity: 0.15;
+      transition: opacity 0.3s;
+    }
+    .site-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .site-card:hover::before { opacity: 0.25; }
+
+    .site-card-indo {
+      background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
+      border: 2px solid rgba(220, 38, 38, 0.3);
+    }
+    .site-card-mong {
+      background: linear-gradient(135deg, #0066CC 0%, #004C99 100%);
+      border: 2px solid rgba(0, 102, 204, 0.3);
+    }
+    .site-card-malay {
+      background: linear-gradient(135deg, #00338D 0%, #002266 100%);
+      border: 2px solid rgba(0, 51, 141, 0.3);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .site-flag {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .site-name {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .site-name-ko {
+      font-size: 1rem;
+      opacity: 0.85;
+      margin-bottom: 0.8rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .site-desc {
+      font-size: 0.9rem;
+      opacity: 0.75;
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+    }
+
+    .site-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255,255,255,0.2);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      z-index: 1;
+    }
+
+    /* Footer */
+    .landing-footer {
+      text-align: center;
+      padding: 2rem;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.85rem;
+      background: #0F172A;
+    }
+
+    /* Indicators */
+    .landing-indicators {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      gap: 8px;
+    }
+    .landing-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transition: background 0.3s;
+    }
+    .landing-dot.active { background: #fff; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .landing-logo { font-size: 3rem; }
+      .landing-tagline { font-size: 1.1rem; margin-bottom: 2.5rem; }
+      .site-cards { flex-direction: column; align-items: center; }
+      .site-card { width: 85vw; max-width: 320px; padding: 2rem 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .landing-logo { font-size: 2.5rem; }
+      .landing-tagline { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="landing-hero">
+    <div class="landing-slide active" style="background-image: url('images/landing_1.jpg')"></div>
+    <div class="landing-slide" style="background-image: url('images/landing_2.jpg')"></div>
+    <div class="landing-slide" style="background-image: url('images/landing_3.jpg')"></div>
+    <div class="landing-overlay"></div>
+
+    <div class="landing-content">
+      <div class="landing-logo">Ko<span>Info</span></div>
+      <p class="landing-tagline">Your Guide to Life in Korea | 한국 생활 가이드</p>
+
+      <div class="site-cards">
+        <a href="https://indo.koinfo.kr" class="site-card site-card-indo">
+          <div class="site-flag">🇮🇩 🇰🇷</div>
+          <div class="site-name">IndoKo</div>
+          <div class="site-name-ko">인도코</div>
+          <div class="site-desc">Info lengkap untuk WNI di Korea<br>재한 인도네시아인 정보</div>
+        </a>
+
+        <a href="https://mong.koinfo.kr" class="site-card site-card-mong">
+          <div class="site-flag">🇲🇳 🇰🇷</div>
+          <div class="site-name">MongKo</div>
+          <div class="site-name-ko">몽코</div>
+          <div class="site-desc">Солонгост амьдрах бүрэн мэдээлэл<br>재한 몽골인 정보</div>
+        </a>
+
+        <a href="#" class="site-card site-card-malay">
+          <span class="site-badge">Coming Soon</span>
+          <div class="site-flag">🇲🇾 🇰🇷</div>
+          <div class="site-name">MalayKo</div>
+          <div class="site-name-ko">말코</div>
+          <div class="site-desc">Info lengkap untuk rakyat Malaysia di Korea<br>재한 말레이시아인 정보</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="landing-indicators">
+      <span class="landing-dot active"></span>
+      <span class="landing-dot"></span>
+      <span class="landing-dot"></span>
+    </div>
+  </section>
+
+  <footer class="landing-footer">
+    &copy; 2026 KoInfo. All rights reserved.
+  </footer>
+
+  <script>
+    (function() {
+      var slides = document.querySelectorAll('.landing-slide');
+      var dots = document.querySelectorAll('.landing-dot');
+      var current = 0;
+      var total = slides.length;
+
+      function showSlide(n) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (n + total) % total;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      setInterval(function() { showSlide(current + 1); }, 5000);
+
+      dots.forEach(function(dot, i) {
+        dot.addEventListener('click', function() { showSlide(i); });
+      });
+    })();
+  </script>
+</body>
+</html>
