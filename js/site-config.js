@@ -27,8 +27,7 @@ const SITES = {
       accentLight: '#DBEAFE',
     },
     heroSlides: 5,
-    heroPrefix: 'indoko_background',
-    heroExtensions: ['jpg', 'jpg', 'PNG', 'jpg', 'jpg'],
+    heroExtensions: ['jpg', 'jpg', 'png', 'jpg', 'jpg'],
     stats: [
       { count: 49000, i18nLabel: 'stats.residentsLabel', i18nSource: 'stats.residentsSource', rank: false },
       { count: 7500, i18nLabel: 'stats.studentsLabel', i18nSource: 'stats.studentsSource', rank: false },
@@ -68,7 +67,6 @@ const SITES = {
       accentLight: '#FDE8E8',
     },
     heroSlides: 4,
-    heroPrefix: 'mongko_background',
     heroExtensions: ['jpg', 'jpg', 'jpg', 'jpg'],
     stats: [
       { count: 57534, i18nLabel: 'stats.residentsLabel', i18nSource: 'stats.residentsSource', rank: false },
@@ -109,7 +107,6 @@ const SITES = {
       accentLight: '#FFF8DC',
     },
     heroSlides: 0,
-    heroPrefix: 'malayko_background',
     heroExtensions: [],
     stats: [
       { count: 12000, i18nLabel: 'stats.residentsLabel', i18nSource: 'stats.residentsSource', rank: false },
@@ -193,8 +190,8 @@ function applySiteBranding() {
   const heroSlides = document.querySelectorAll('.hero-slide');
   heroSlides.forEach((slide, i) => {
     if (i < SITE.heroSlides) {
-      const ext = SITE.heroExtensions[i] || 'jpg';
-      slide.style.backgroundImage = "url('sites/" + SITE.id + "/images/" + SITE.heroPrefix + " (" + (i + 1) + ")." + ext + "')";
+      var ext = SITE.heroExtensions[i] || 'jpg';
+      slide.style.backgroundImage = "url('sites/" + SITE.id + "/images/hero_" + (i + 1) + "." + ext + "')";
     } else {
       slide.remove();
     }
