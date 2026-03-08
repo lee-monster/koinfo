@@ -205,7 +205,7 @@
     loadNews('');
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  function initNews() {
     if (document.getElementById('home-news-list')) renderHomeNews();
     if (document.getElementById('full-news-list')) renderFullNews();
     var relatedEl = document.getElementById('related-news');
@@ -213,7 +213,13 @@
       var pageName = relatedEl.getAttribute('data-page');
       if (pageName) renderRelatedNews(pageName);
     }
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNews);
+  } else {
+    initNews();
+  }
 
   // Re-render on language change
   var origSetLang = typeof setLanguage !== 'undefined' ? setLanguage : null;

@@ -164,8 +164,8 @@ function initHeroSlideshow() {
   startTimer();
 }
 
-// Init on DOM ready
-document.addEventListener('DOMContentLoaded', () => {
+// Init - run immediately if DOM already ready, otherwise wait
+function initApp() {
   applySiteBranding();
   applyTranslations();
   updateLangButton();
@@ -179,4 +179,10 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('nav-links').classList.remove('active');
     });
   });
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}

@@ -571,7 +571,11 @@ function initBoard() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => { initBoard(); });
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => { initBoard(); });
+} else {
+  initBoard();
+}
 
 const originalSetLanguage = typeof setLanguage === 'function' ? setLanguage : null;
 if (originalSetLanguage) {

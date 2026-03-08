@@ -145,6 +145,7 @@ const SITE = SITES[SITE_KEY];
 
 // Apply CSS custom properties
 (function applySiteTheme() {
+  if (!SITE) return;
   const r = document.documentElement.style;
   r.setProperty('--primary', SITE.colors.primary);
   r.setProperty('--primary-dark', SITE.colors.primaryDark);
