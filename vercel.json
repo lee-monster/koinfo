@@ -1,4 +1,12 @@
 {
+  "redirects": [
+    {
+      "source": "/index.html",
+      "has": [{ "type": "host", "value": "travel.koinfo.kr" }],
+      "destination": "/travel-index.html",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     {
@@ -7,7 +15,7 @@
       "destination": "/travel-index.html"
     },
     {
-      "source": "/((?!api|js|css|sites|images|favicon).*)",
+      "source": "/((?!api|js|css|sites|images|favicon|travel-index).*)",
       "has": [{ "type": "host", "value": "travel.koinfo.kr" }],
       "destination": "/travel-index.html"
     }
