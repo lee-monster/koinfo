@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Korea Travel</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar scrolled">
+    <div class="container">
+      <a href="index.html" class="nav-brand"><span class="nav-flag"></span><span class="brand-text"><span class="brand-name"></span><span class="brand-sub" data-i18n="common.tagline"></span></span></a>
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="study.html" data-i18n="nav.study">Study</a></li>
+        <li><a href="work.html" data-i18n="nav.work">Work</a></li>
+        <li><a href="visa.html" data-i18n="nav.visa">Visa</a></li>
+        <li><a href="life.html" data-i18n="nav.life">Life</a></li>
+        <li><a href="travel.html" class="active" data-i18n="nav.travel">Travel</a></li>
+        <li><a href="community.html" data-i18n="nav.community">Community</a></li>
+        <li><button class="lang-btn" id="lang-toggle" onclick="toggleLanguage()">한국어</button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="page-header"><h1 data-i18n="travel.title">Korea Travel</h1></section>
+
+  <!-- Travel-Ko Banner -->
+  <a href="https://travel.koinfo.kr" target="_blank" rel="noopener" class="travel-ko-banner">
+    <span class="travel-ko-banner-text" data-i18n-html="travel.koBanner">✈️ <strong>travel-ko</strong> 에서 보다 자세한 여행 정보를 알아보세요!</span>
+    <span class="travel-ko-banner-arrow">→</span>
+  </a>
+
+  <!-- Map Section -->
+  <section class="travel-map-section">
+    <div id="travel-map" class="travel-map"></div>
+  </section>
+
+  <!-- Travel Posts -->
+  <section class="section">
+    <div class="container">
+      <div class="travel-toolbar">
+        <div class="travel-categories" id="travel-categories">
+          <button class="board-cat-btn active" data-cat="all" data-i18n="travel.catAll">All</button>
+          <button class="board-cat-btn" data-cat="food" data-i18n="travel.catFood">Food</button>
+          <button class="board-cat-btn" data-cat="attraction" data-i18n="travel.catAttraction">Attractions</button>
+          <button class="board-cat-btn" data-cat="cafe" data-i18n="travel.catCafe">Cafe</button>
+          <button class="board-cat-btn" data-cat="nature" data-i18n="travel.catNature">Nature</button>
+          <button class="board-cat-btn" data-cat="shopping" data-i18n="travel.catShopping">Shopping</button>
+          <button class="board-cat-btn" data-cat="nightlife" data-i18n="travel.catNightlife">Nightlife</button>
+        </div>
+        <button class="board-write-btn" id="btn-travel-write" onclick="travelShowWrite()" data-i18n="travel.writeBtn">Share a Spot</button>
+      </div>
+
+      <div id="travel-list" class="travel-grid"></div>
+      <div id="travel-empty" class="board-empty" style="display:none;" data-i18n="travel.empty">No travel posts yet. Be the first to share!</div>
+      <div id="travel-pagination" class="board-pagination"></div>
+    </div>
+  </section>
+
+  <!-- Detail View -->
+  <div id="travel-detail-overlay" class="modal-overlay" style="display:none;">
+    <div class="travel-detail-modal">
+      <button class="travel-detail-close" onclick="travelCloseDetail()">&times;</button>
+      <div id="travel-detail-images" class="travel-detail-images"></div>
+      <div class="travel-detail-body">
+        <span id="travel-detail-cat" class="cat-tag"></span>
+        <h2 id="travel-detail-title"></h2>
+        <div class="travel-detail-meta">
+          <span id="travel-detail-author"></span>
+          <span id="travel-detail-date"></span>
+          <span id="travel-detail-views"></span>
+        </div>
+        <div id="travel-detail-tags" class="travel-detail-tags"></div>
+        <div id="travel-detail-content" class="travel-detail-content"></div>
+        <div id="travel-detail-location" class="travel-detail-location"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Write View -->
+  <div id="travel-write-overlay" class="modal-overlay" style="display:none;">
+    <div class="travel-write-modal">
+      <h2 data-i18n="travel.writeTitle">Share a Travel Spot</h2>
+      <p class="travel-write-notice" data-i18n="travel.writeNotice">Your post will be published after admin approval.</p>
+      <form id="travel-form" class="board-form" onsubmit="travelSubmitPost(event)">
+        <div class="form-group">
+          <label data-i18n="travel.categoryLabel">Category</label>
+          <select id="travel-post-category" required>
+            <option value="food" data-i18n="travel.catFood">Food</option>
+            <option value="attraction" data-i18n="travel.catAttraction">Attractions</option>
+            <option value="cafe" data-i18n="travel.catCafe">Cafe</option>
+            <option value="nature" data-i18n="travel.catNature">Nature</option>
+            <option value="shopping" data-i18n="travel.catShopping">Shopping</option>
+            <option value="nightlife" data-i18n="travel.catNightlife">Nightlife</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="travel.placeLabel">Place Name</label>
+          <input type="text" id="travel-post-title" required maxlength="100" placeholder="e.g. Gyeongbokgung Palace">
+        </div>
+        <div class="form-group">
+          <label data-i18n="travel.authorLabel">Your Name</label>
+          <input type="text" id="travel-post-author" required maxlength="30" placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label data-i18n="travel.contentLabel">Review / Description</label>
+          <textarea id="travel-post-content" rows="6" required maxlength="3000" placeholder="Share your experience..."></textarea>
+        </div>
+        <div class="form-group">
+          <label data-i18n="travel.photoLabel">Photos (max 5)</label>
+          <input type="file" id="travel-post-photos" accept="image/*" multiple>
+          <div id="travel-photo-preview" class="travel-photo-preview"></div>
+        </div>
+        <div class="form-group">
+          <label data-i18n="travel.instagramLabel">Instagram Tag</label>
+          <input type="text" id="travel-post-instagram" maxlength="100" placeholder="@username or #hashtag">
+        </div>
+        <div class="form-group">
+          <label data-i18n="travel.locationLabel">Location (click on map or enter address)</label>
+          <div class="travel-location-input">
+            <input type="text" id="travel-post-address" placeholder="Search address..." maxlength="200">
+            <button type="button" class="btn-secondary" onclick="travelSearchAddress()" data-i18n="travel.searchBtn">Search</button>
+          </div>
+          <div id="travel-write-map" class="travel-write-map"></div>
+          <input type="hidden" id="travel-post-lat">
+          <input type="hidden" id="travel-post-lng">
+          <small id="travel-coords-display"></small>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" onclick="travelCloseWrite()" data-i18n="travel.cancelBtn">Cancel</button>
+          <button type="submit" class="btn-primary" data-i18n="travel.submitBtn">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Approval Modal -->
+  <div id="travel-admin-overlay" class="modal-overlay" style="display:none;">
+    <div class="modal-content">
+      <h3 data-i18n="travel.adminTitle">Admin Approval</h3>
+      <input type="password" id="travel-admin-password" placeholder="Admin password" maxlength="20">
+      <p id="travel-admin-error" class="modal-error" style="display:none;" data-i18n="travel.adminWrong">Wrong password</p>
+      <div id="travel-pending-list" class="travel-pending-list"></div>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="travelCloseAdmin()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer"><div class="footer-brand"></div><div class="footer-flags"></div><p data-i18n="footer.text"></p></footer>
+
+  <script src="js/site-config.js"></script>
+  <script>
+    if (SITE_KEY === 'main') { window.location.replace('landing.html'); }
+    else {
+      var langScript = document.createElement('script');
+      langScript.src = 'sites/' + SITE_KEY + '/lang.js';
+      langScript.onload = function() {
+        var mainScript = document.createElement('script');
+        mainScript.src = 'js/main.js';
+        mainScript.onload = function() {
+          var travelScript = document.createElement('script');
+          travelScript.src = 'js/travel.js';
+          document.head.appendChild(travelScript);
+        };
+        document.head.appendChild(mainScript);
+      };
+      document.head.appendChild(langScript);
+    }
+  </script>
+</body>
+</html>

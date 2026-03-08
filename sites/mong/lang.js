@@ -5,11 +5,11 @@ const translations = {
 
     // Navigation
     "nav.home": "Нүүр",
-    "nav.study": "Суралцах",
+    "nav.study": "Боловсрол·Суралцах",
     "nav.work": "Ажиллах",
     "nav.visa": "Виз·Хууль",
     "nav.life": "Амьдрал",
-    "nav.business": "Бизнес",
+    "nav.travel": "Солонгос аялал",
     "nav.community": "Коммунити",
     "nav.lang": "한국어",
 
@@ -42,7 +42,7 @@ const translations = {
     "services.title": "Үйлчилгээнүүд",
 
     // Index - Cards
-    "card.study.title": "🎓 Боловсрол",
+    "card.study.title": "🎓 Боловсрол·Суралцах",
     "card.study.desc": "TOPIK бэлтгэл, Солонгос хэлний сургалт, суралцах зөвлөгөө, AI сургалтын хэрэгсэл",
     "card.work.title": "💼 Ажил олгох",
     "card.work.desc": "Монгол хэлээр анкет бичих, хөдөлмөрийн гэрээ хянах, ажлын байр зуучлах",
@@ -50,8 +50,8 @@ const translations = {
     "card.visa.desc": "Виз солих·сунгах, хөдөлмөрийн эрхийг хамгаалах, хуулийн зөвлөгөө",
     "card.life.title": "🏠 Амьдрал тогтох",
     "card.life.desc": "Орон сууц, банк, эмнэлэг, тээвэр гарын авлага, нийгэмлэгийн газрын зураг",
-    "card.business.title": "🏢 Бизнес дэмжлэг",
-    "card.business.desc": "Хуучин машин экспортын зөвлөгөө, бизнес бүртгэл, татвар·нягтлан бодох",
+    "card.travel.title": "✈️ Солонгос аялал",
+    "card.travel.desc": "Аялалын газрууд, хоол, кафе, байгаль, дэлгүүр зэрэг мэдээлэл хуваалцах",
     "card.community.title": "🤝 Коммунити",
     "card.community.desc": "Нийгэмлэгийн самбар, мэдээлэл хуваалцах, асуулт хариулт, ажлын зар",
 
@@ -1106,6 +1106,39 @@ const translations = {
     "stats.residentsLabel": "Солонгос дахь Монголчууд (2025.3)",
     "stats.residentsSource": "Гадаад хэргийн яам",
 
+    // Travel
+    "travel.title": "Солонгос аялал",
+    "travel.catAll": "Бүгд",
+    "travel.catFood": "Хоол",
+    "travel.catAttraction": "Үзмэр газар",
+    "travel.catCafe": "Кафе",
+    "travel.catNature": "Байгаль",
+    "travel.catShopping": "Дэлгүүр",
+    "travel.catNightlife": "Шөнийн амьдрал",
+    "travel.writeBtn": "Газар хуваалцах",
+    "travel.empty": "Аялалын мэдээлэл одоогоор байхгүй. Эхлээд та хуваалцаарай!",
+    "travel.writeTitle": "Аялалын газар хуваалцах",
+    "travel.writeNotice": "Таны нийтлэл админаар баталгаажсаны дараа нийтлэгдэнэ.",
+    "travel.categoryLabel": "Ангилал",
+    "travel.placeLabel": "Газрын нэр",
+    "travel.authorLabel": "Таны нэр",
+    "travel.contentLabel": "Тойм / Тайлбар",
+    "travel.photoLabel": "Зураг (хамгийн ихдээ 5)",
+    "travel.instagramLabel": "Instagram таг",
+    "travel.locationLabel": "Байршил (газрын зурган дээр дарж эсвэл хаяг оруулна уу)",
+    "travel.searchBtn": "Хайх",
+    "travel.cancelBtn": "Цуцлах",
+    "travel.submitBtn": "Илгээх",
+    "travel.submitted": "Таны нийтлэл илгээгдлээ! Админ зөвшөөрсний дараа харагдана.",
+    "travel.views": "Үзсэн",
+    "travel.adminTitle": "Админ зөвшөөрөл",
+    "travel.adminWrong": "Нууц үг буруу",
+    "travel.approve": "Зөвшөөрөх",
+    "travel.reject": "Татгалзах",
+    "travel.noPending": "Хүлээж буй нийтлэл байхгүй.",
+    "travel.openMap": "Naver Map-д нээх",
+    "travel.koBanner": "✈️ <strong>travel-ko</strong> дээрээс илүү дэлгэрэнгүй аялалын мэдээлэл аваарай!",
+
     // Footer origin alias
     "footer.office.origin": "Монгол оффис",
     "footer.office.origin.addr": "UNESCO St 13, SBD - 1 khoroo, Ulaanbaatar",
@@ -1117,11 +1150,11 @@ const translations = {
 
     // Navigation
     "nav.home": "홈",
-    "nav.study": "교육",
+    "nav.study": "교육·유학",
     "nav.work": "취업",
     "nav.visa": "비자·법률",
     "nav.life": "생활",
-    "nav.business": "사업 지원",
+    "nav.travel": "한국여행",
     "nav.community": "커뮤니티",
     "nav.lang": "Монгол",
 
@@ -1154,7 +1187,7 @@ const translations = {
     "services.title": "서비스",
 
     // Index - Cards
-    "card.study.title": "🎓 교육 서비스",
+    "card.study.title": "🎓 교육·유학",
     "card.study.desc": "TOPIK 대비, 한국어 교육, 유학 컨설팅, AI 학습 도구",
     "card.work.title": "💼 취업 연계",
     "card.work.desc": "몽골어 이력서 작성, 근로계약서 검토, 취업 매칭, 사업장 변경 지원",
@@ -1162,8 +1195,8 @@ const translations = {
     "card.visa.desc": "비자 변경·연장, 근로권익 보호, 법률 상담 연계",
     "card.life.title": "🏠 생활 정착 지원",
     "card.life.desc": "주거·은행·의료·교통 가이드, 커뮤니티 지도, 긴급 연락처",
-    "card.business.title": "🏢 사업자 지원",
-    "card.business.desc": "중고차 수출 컨설팅, 사업자등록, 세무·회계, 창업 지원",
+    "card.travel.title": "✈️ 한국여행",
+    "card.travel.desc": "여행지, 맛집, 카페, 자연, 쇼핑 등 여행 정보 공유",
     "card.community.title": "🤝 커뮤니티",
     "card.community.desc": "커뮤니티 게시판, 정보공유, 질문답변, 구인구직",
 
@@ -2122,6 +2155,39 @@ const translations = {
     "board.commentRequired": "이름과 내용을 입력해주세요.",
     "news.sourceLabel": "출처",
 
+    // Travel
+    "travel.title": "한국여행",
+    "travel.catAll": "전체",
+    "travel.catFood": "맛집",
+    "travel.catAttraction": "관광지",
+    "travel.catCafe": "카페",
+    "travel.catNature": "자연",
+    "travel.catShopping": "쇼핑",
+    "travel.catNightlife": "나이트라이프",
+    "travel.writeBtn": "여행지 공유",
+    "travel.empty": "아직 여행 정보가 없습니다. 첫 번째로 공유해 주세요!",
+    "travel.writeTitle": "여행지 공유하기",
+    "travel.writeNotice": "관리자 승인 후 게시됩니다.",
+    "travel.categoryLabel": "카테고리",
+    "travel.placeLabel": "장소 이름",
+    "travel.authorLabel": "작성자",
+    "travel.contentLabel": "리뷰 / 설명",
+    "travel.photoLabel": "사진 (최대 5장)",
+    "travel.instagramLabel": "인스타그램 태그",
+    "travel.locationLabel": "위치 (지도를 클릭하거나 주소를 입력하세요)",
+    "travel.searchBtn": "검색",
+    "travel.cancelBtn": "취소",
+    "travel.submitBtn": "제출",
+    "travel.submitted": "게시물이 제출되었습니다! 관리자 승인 후 게시됩니다.",
+    "travel.views": "조회",
+    "travel.adminTitle": "관리자 승인",
+    "travel.adminWrong": "비밀번호가 틀립니다",
+    "travel.approve": "승인",
+    "travel.reject": "거절",
+    "travel.noPending": "대기 중인 게시물이 없습니다.",
+    "travel.openMap": "네이버 지도에서 열기",
+    "travel.koBanner": "✈️ <strong>travel-ko</strong> 에서 보다 자세한 여행 정보를 알아보세요!",
+
     // Stats aliases
     "stats.residentsLabel": "재한 몽골인 (2025.3)",
     "stats.residentsSource": "외교부",
@@ -2164,4 +2230,47 @@ const SITE_SAMPLE_COMMENTS = [
   { postId: 1, author: 'Оюунаа', content: 'Мэдээлэл өгсөнд баярлалаа! Би Western Union ашиглаж байсан, илүү хямд нь байгаа юм байна.', contentKo: '정보 감사합니다! 저는 Western Union을 쓰고 있었는데 더 저렴한 게 있었군요.' },
   { postId: 1, author: 'Ганбат', content: 'SentBe бас сайн. Хурдан бөгөөд хялбар!', contentKo: '저도 SentBe 추천합니다. 빠르고 쉬워요!' },
   { postId: 2, author: 'Болд', content: 'Hi Korea онлайнаар хийж болно. Паспорт, ARC, хөдөлмөрийн гэрээ, компаний бичиг хэрэгтэй.', contentKo: 'Hi Korea 온라인으로 가능해요. 여권, ARC, 근로계약서, 회사 서류 필요합니다.' },
+];
+
+const SITE_SAMPLE_TRAVEL = [
+  {
+    category: 'food',
+    title: 'Мёндон гудамжны хоол',
+    author: 'Оюунаа',
+    content: 'Мёндон бол Сөүлийн хамгийн алдартай гудамжны хоолны газар. Токпокки, хотдог, гяоза зэрэг олон зүйл амсаж болно. Үнэ нь ₩3,000-5,000 орчим. Орой нь илүү сонирхолтой!\n\nХамгийн сайн цаг: 17:00-21:00',
+    instagram: '@myeongdong_food #명동맛집 #서울여행',
+    lat: 37.5636,
+    lng: 126.9869,
+    photos: []
+  },
+  {
+    category: 'attraction',
+    title: 'Кёнбоккүн ордон',
+    author: 'Батболд',
+    content: 'Солонгосын хамгийн алдартай ордон. Ханбок өмссөн бол үнэгүй! Өмнө нь түрээслэх газар олон байна (₩15,000-20,000). Хаалганы харуулын солилцоо 10:00, 14:00 цагт болдог.\n\nЗөвлөгөө: Ерөнхий талбайн ард гоё нуур байна, бүх хүн тийш явдаггүй.',
+    instagram: '#경복궁 #한복 @visitseoul',
+    lat: 37.5796,
+    lng: 126.9770,
+    photos: []
+  },
+  {
+    category: 'nature',
+    title: 'Намсан уул / N Сөүл цамхаг',
+    author: 'Энхжаргал',
+    content: 'Сөүлийн төвд байрлах уул. Дээш явахад 30-40 минут. Дээрээс бүх Сөүлийг хардаг. Шөнө нь гоё! N Tower дээр хайрын цоож өлгөж болно.\n\nМетро: 4-р шугам Мёндон буудал, 3-р гарц.',
+    instagram: '#남산타워 #서울뷰 #NSeoulTower',
+    lat: 37.5512,
+    lng: 126.9882,
+    photos: []
+  },
+  {
+    category: 'cafe',
+    title: 'Иксон-дон зураг авахуулах кафе',
+    author: 'Сарантуяа',
+    content: 'Иксон-дон бол Сөүлийн хамгийн тренди хорооллуудын нэг. Хуучин байшинг кафе болгосон газрууд олон. Кофе ₩5,000-7,000. Инстаграмд тохирсон гоё газрууд!\n\nОчих: 1, 3, 5-р шугам Чонгак буудал.',
+    instagram: '#익선동카페 #서울카페 @ikseondong',
+    lat: 37.5735,
+    lng: 126.9910,
+    photos: []
+  }
 ];

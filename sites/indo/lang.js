@@ -3,11 +3,11 @@ const translations = {
     // Common
     "common.tagline": "인도코",
     "nav.home": "Beranda",
-    "nav.study": "Belajar",
+    "nav.study": "Pendidikan·Studi",
     "nav.work": "Bekerja",
     "nav.visa": "Visa·Hukum",
     "nav.life": "Kehidupan",
-    "nav.business": "Bisnis",
+    "nav.travel": "Wisata Korea",
     "nav.community": "Komunitas",
     "nav.lang": "한국어",
 
@@ -41,7 +41,7 @@ const translations = {
 
     // Services
     "services.title": "Layanan Kami",
-    "card.study.title": "🎓 Pendidikan",
+    "card.study.title": "🎓 Pendidikan·Studi",
     "card.study.desc": "Persiapan TOPIK, kursus bahasa Korea, konsultasi studi, beasiswa GKS",
     "card.work.title": "💼 Pekerjaan",
     "card.work.desc": "Penulisan CV, review kontrak kerja, penempatan kerja, sistem EPS",
@@ -49,8 +49,8 @@ const translations = {
     "card.visa.desc": "Perubahan & perpanjangan visa, perlindungan hak kerja, konsultasi hukum",
     "card.life.title": "🏠 Kehidupan Sehari-hari",
     "card.life.desc": "Perumahan, bank, rumah sakit, transportasi, panduan kehidupan di Korea",
-    "card.business.title": "🏢 Dukungan Bisnis",
-    "card.business.desc": "Pendaftaran usaha, pajak & akuntansi, ekspor-impor, startup",
+    "card.travel.title": "✈️ Wisata Korea",
+    "card.travel.desc": "Tempat wisata, kuliner, kafe, alam, belanja — berbagi informasi perjalanan",
     "card.community.title": "🤝 Komunitas",
     "card.community.desc": "Papan komunitas, berbagi informasi, tanya jawab, lowongan kerja",
 
@@ -277,17 +277,50 @@ const translations = {
     "board.confirmDelete": "Apakah Anda yakin ingin menghapus postingan ini?",
     "board.commentRequired": "Masukkan nama dan komentar.",
     "news.sourceLabel": "Sumber",
+
+    // Travel
+    "travel.title": "Wisata Korea",
+    "travel.catAll": "Semua",
+    "travel.catFood": "Kuliner",
+    "travel.catAttraction": "Wisata",
+    "travel.catCafe": "Kafe",
+    "travel.catNature": "Alam",
+    "travel.catShopping": "Belanja",
+    "travel.catNightlife": "Hiburan Malam",
+    "travel.writeBtn": "Bagikan Tempat",
+    "travel.empty": "Belum ada info wisata. Jadilah yang pertama berbagi!",
+    "travel.writeTitle": "Bagikan Tempat Wisata",
+    "travel.writeNotice": "Postingan Anda akan ditampilkan setelah disetujui admin.",
+    "travel.categoryLabel": "Kategori",
+    "travel.placeLabel": "Nama Tempat",
+    "travel.authorLabel": "Nama Anda",
+    "travel.contentLabel": "Ulasan / Deskripsi",
+    "travel.photoLabel": "Foto (maks 5)",
+    "travel.instagramLabel": "Tag Instagram",
+    "travel.locationLabel": "Lokasi (klik peta atau masukkan alamat)",
+    "travel.searchBtn": "Cari",
+    "travel.cancelBtn": "Batal",
+    "travel.submitBtn": "Kirim",
+    "travel.submitted": "Postingan Anda telah dikirim! Akan tampil setelah disetujui admin.",
+    "travel.views": "Dilihat",
+    "travel.adminTitle": "Persetujuan Admin",
+    "travel.adminWrong": "Kata sandi salah",
+    "travel.approve": "Setujui",
+    "travel.reject": "Tolak",
+    "travel.noPending": "Tidak ada postingan menunggu.",
+    "travel.openMap": "Buka di Naver Map",
+    "travel.koBanner": "✈️ <strong>travel-ko</strong> untuk informasi wisata Korea yang lebih lengkap!",
   },
 
   ko: {
     // Common
     "common.tagline": "인도코",
     "nav.home": "홈",
-    "nav.study": "유학",
+    "nav.study": "교육·유학",
     "nav.work": "취업",
     "nav.visa": "비자·법률",
     "nav.life": "생활",
-    "nav.business": "비즈니스",
+    "nav.travel": "한국여행",
     "nav.community": "커뮤니티",
     "nav.lang": "Bahasa",
 
@@ -321,7 +354,7 @@ const translations = {
 
     // Services
     "services.title": "서비스",
-    "card.study.title": "🎓 교육",
+    "card.study.title": "🎓 교육·유학",
     "card.study.desc": "TOPIK 대비, 한국어 교육, 유학 컨설팅, GKS 장학금",
     "card.work.title": "💼 취업",
     "card.work.desc": "이력서 작성, 근로계약서 검토, 취업 매칭, EPS 시스템",
@@ -329,8 +362,8 @@ const translations = {
     "card.visa.desc": "비자 변경·연장, 노동권 보호, 법률 상담",
     "card.life.title": "🏠 생활 정착",
     "card.life.desc": "주거, 은행, 의료, 교통, 한국 생활 가이드",
-    "card.business.title": "🏢 비즈니스 지원",
-    "card.business.desc": "사업자등록, 세무·회계, 수출입, 창업",
+    "card.travel.title": "✈️ 한국여행",
+    "card.travel.desc": "여행지, 맛집, 카페, 자연, 쇼핑 등 여행 정보 공유",
     "card.community.title": "🤝 커뮤니티",
     "card.community.desc": "커뮤니티 게시판, 정보 공유, 질문답변, 구인구직",
 
@@ -557,6 +590,39 @@ const translations = {
     "board.confirmDelete": "이 게시글을 삭제하시겠습니까?",
     "board.commentRequired": "이름과 내용을 입력해주세요.",
     "news.sourceLabel": "출처",
+
+    // Travel
+    "travel.title": "한국여행",
+    "travel.catAll": "전체",
+    "travel.catFood": "맛집",
+    "travel.catAttraction": "관광지",
+    "travel.catCafe": "카페",
+    "travel.catNature": "자연",
+    "travel.catShopping": "쇼핑",
+    "travel.catNightlife": "나이트라이프",
+    "travel.writeBtn": "여행지 공유",
+    "travel.empty": "아직 여행 정보가 없습니다. 첫 번째로 공유해 주세요!",
+    "travel.writeTitle": "여행지 공유하기",
+    "travel.writeNotice": "관리자 승인 후 게시됩니다.",
+    "travel.categoryLabel": "카테고리",
+    "travel.placeLabel": "장소 이름",
+    "travel.authorLabel": "작성자",
+    "travel.contentLabel": "리뷰 / 설명",
+    "travel.photoLabel": "사진 (최대 5장)",
+    "travel.instagramLabel": "인스타그램 태그",
+    "travel.locationLabel": "위치 (지도를 클릭하거나 주소를 입력하세요)",
+    "travel.searchBtn": "검색",
+    "travel.cancelBtn": "취소",
+    "travel.submitBtn": "제출",
+    "travel.submitted": "게시물이 제출되었습니다! 관리자 승인 후 게시됩니다.",
+    "travel.views": "조회",
+    "travel.adminTitle": "관리자 승인",
+    "travel.adminWrong": "비밀번호가 틀립니다",
+    "travel.approve": "승인",
+    "travel.reject": "거절",
+    "travel.noPending": "대기 중인 게시물이 없습니다.",
+    "travel.openMap": "네이버 지도에서 열기",
+    "travel.koBanner": "✈️ <strong>travel-ko</strong> 에서 보다 자세한 여행 정보를 알아보세요!",
   }
 };
 
@@ -591,4 +657,47 @@ const SITE_SAMPLE_COMMENTS = [
   { postId: 1, author: 'Rina', content: 'Terima kasih infonya! Saya selama ini pakai Western Union, ternyata ada yang lebih murah ya.', contentKo: '정보 감사합니다! 저는 Western Union을 쓰고 있었는데 더 저렴한 게 있었군요.' },
   { postId: 1, author: 'Hasan', content: 'Saya rekomendasikan SentBe juga. Cepat dan mudah!', contentKo: '저도 SentBe 추천합니다. 빠르고 쉬워요!' },
   { postId: 2, author: 'Budi', content: 'Kamu bisa pakai Hi Korea online. Dokumen yang perlu: paspor, ARC, kontrak kerja, dan surat dari perusahaan.', contentKo: 'Hi Korea 온라인으로 가능해요. 필요 서류: 여권, ARC, 근로계약서, 회사 서류.' },
+];
+
+const SITE_SAMPLE_TRAVEL = [
+  {
+    category: 'food',
+    title: 'Street Food Myeongdong',
+    author: 'Rina',
+    content: 'Myeongdong adalah surga street food di Seoul! Ada tteokbokki, hotdog keju, gyoza, dan banyak lagi. Harganya sekitar ₩3,000-5,000. Paling ramai sore hari!\n\nWaktu terbaik: 17:00-21:00\nTips: Jangan makan siang dulu biar bisa coba banyak.',
+    instagram: '@myeongdong_food #명동맛집 #서울여행',
+    lat: 37.5636,
+    lng: 126.9869,
+    photos: []
+  },
+  {
+    category: 'attraction',
+    title: 'Istana Gyeongbokgung',
+    author: 'Budi',
+    content: 'Istana paling terkenal di Korea. Kalau pakai hanbok, masuk gratis! Banyak tempat sewa hanbok di sekitar (₩15,000-20,000). Pergantian penjaga gerbang jam 10:00 dan 14:00.\n\nTips: Di belakang hall utama ada danau yang indah, tidak terlalu ramai.',
+    instagram: '#경복궁 #한복 @visitseoul',
+    lat: 37.5796,
+    lng: 126.9770,
+    photos: []
+  },
+  {
+    category: 'nature',
+    title: 'Gunung Namsan / N Seoul Tower',
+    author: 'Dewi',
+    content: 'Gunung di tengah kota Seoul. Jalan kaki ke atas sekitar 30-40 menit. Pemandangan seluruh Seoul dari atas sangat indah. Malam hari lebih keren! Di N Tower bisa pasang gembok cinta.\n\nMetro: Line 4 stasiun Myeongdong, exit 3.',
+    instagram: '#남산타워 #서울뷰 #NSeoulTower',
+    lat: 37.5512,
+    lng: 126.9882,
+    photos: []
+  },
+  {
+    category: 'cafe',
+    title: 'Kafe Instagramable di Ikseon-dong',
+    author: 'Putri',
+    content: 'Ikseon-dong adalah salah satu area paling trendy di Seoul. Banyak rumah tradisional yang diubah jadi kafe unik. Kopi ₩5,000-7,000. Cocok banget untuk foto Instagram!\n\nCara ke sana: Metro Line 1, 3, 5 stasiun Jongno 3-ga.',
+    instagram: '#익선동카페 #서울카페 @ikseondong',
+    lat: 37.5735,
+    lng: 126.9910,
+    photos: []
+  }
 ];
