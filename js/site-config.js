@@ -176,6 +176,11 @@ function detectSite() {
 const SITE_KEY = detectSite();
 const SITE = SITES[SITE_KEY];
 
+// Travel subdomain: redirect to travel-index.html
+if (SITE_KEY === 'travel' && !window.location.pathname.includes('travel-index')) {
+  window.location.replace('/travel-index.html');
+}
+
 // Apply CSS custom properties
 (function applySiteTheme() {
   if (!SITE) return;
