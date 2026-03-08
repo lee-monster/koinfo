@@ -9,6 +9,7 @@ function setLanguage(lang) {
   document.documentElement.lang = (lang === 'ko') ? 'ko' : SITE.htmlLang;
   applyTranslations();
   updateLangButton();
+  if (typeof applySiteSEO === 'function') applySiteSEO(lang);
 }
 
 function toggleLanguage() {
@@ -169,6 +170,7 @@ function initApp() {
   applySiteBranding();
   applyTranslations();
   updateLangButton();
+  if (typeof applySiteSEO === 'function') applySiteSEO(currentLang);
   initAccordions();
   animateCounters();
   initNavbarScroll();

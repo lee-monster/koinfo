@@ -310,6 +310,24 @@ const translations = {
     "travel.noPending": "Tidak ada postingan menunggu.",
     "travel.openMap": "Buka di Naver Map",
     "travel.koBanner": "✈️ <strong>travel-ko</strong> untuk informasi wisata Korea yang lebih lengkap!",
+
+    // SEO
+    "seo.index.title": "IndoKo - Informasi Lengkap untuk WNI di Korea",
+    "seo.index.desc": "IndoKo menyediakan informasi lengkap tentang kerja, pendidikan, visa, dan kehidupan di Korea Selatan untuk warga negara Indonesia.",
+    "seo.study.title": "Pendidikan & Studi di Korea - IndoKo",
+    "seo.study.desc": "Informasi beasiswa, universitas, kursus bahasa Korea, dan program studi untuk WNI. GKS, TOPIK, dan program pertukaran pelajar.",
+    "seo.work.title": "Bekerja di Korea - IndoKo",
+    "seo.work.desc": "Panduan kerja di Korea untuk WNI: EPS, visa kerja, hak pekerja, gaji minimum, dan tips mencari pekerjaan.",
+    "seo.visa.title": "Visa & Hukum Korea - IndoKo",
+    "seo.visa.desc": "Informasi visa Korea untuk WNI: jenis visa, perpanjangan, perubahan status, hukum imigrasi, dan konsultasi hukum.",
+    "seo.life.title": "Kehidupan di Korea - IndoKo",
+    "seo.life.desc": "Panduan kehidupan sehari-hari di Korea: perumahan, transportasi, kesehatan, makanan halal, dan komunitas Indonesia.",
+    "seo.travel.title": "Wisata Korea - IndoKo",
+    "seo.travel.desc": "Rekomendasi tempat wisata di Korea dari komunitas Indonesia: restoran, atraksi, kafe, dan hidden gems.",
+    "seo.news.title": "Berita Terbaru - IndoKo",
+    "seo.news.desc": "Berita terbaru tentang kebijakan imigrasi, perubahan visa, jadwal ujian, dan informasi penting untuk WNI di Korea.",
+    "seo.community.title": "Komunitas WNI di Korea - IndoKo",
+    "seo.community.desc": "Forum komunitas untuk warga negara Indonesia di Korea Selatan. Berbagi informasi, pertanyaan, dan pengalaman.",
   },
 
   ko: {
@@ -623,6 +641,24 @@ const translations = {
     "travel.noPending": "대기 중인 게시물이 없습니다.",
     "travel.openMap": "네이버 지도에서 열기",
     "travel.koBanner": "✈️ <strong>travel-ko</strong> 에서 보다 자세한 여행 정보를 알아보세요!",
+
+    // SEO
+    "seo.index.title": "인도코 - 재한 인도네시아인을 위한 종합 정보",
+    "seo.index.desc": "인도코는 한국에 거주하는 인도네시아인을 위한 취업, 교육, 비자, 생활 종합 정보 플랫폼입니다.",
+    "seo.study.title": "교육·유학 - 인도코",
+    "seo.study.desc": "한국 유학 및 교육 정보: 장학금, 대학교, 한국어 과정, GKS, TOPIK 시험 안내.",
+    "seo.work.title": "취업·근로 - 인도코",
+    "seo.work.desc": "한국 취업 가이드: EPS 고용허가제, 근로 비자, 노동자 권리, 최저임금, 구직 정보.",
+    "seo.visa.title": "비자·법률 - 인도코",
+    "seo.visa.desc": "한국 비자 정보: 비자 종류, 연장, 체류자격 변경, 출입국 관련 법률 안내.",
+    "seo.life.title": "생활 정보 - 인도코",
+    "seo.life.desc": "한국 생활 가이드: 주거, 교통, 의료, 할랄 음식, 인도네시아 커뮤니티 정보.",
+    "seo.travel.title": "한국 여행 - 인도코",
+    "seo.travel.desc": "인도네시아 커뮤니티가 추천하는 한국 여행지: 맛집, 관광지, 카페, 숨은 명소.",
+    "seo.news.title": "최신 소식 - 인도코",
+    "seo.news.desc": "재한 인도네시아인을 위한 최신 뉴스: 정책 변경, 비자 소식, 시험 일정, 중요 공지.",
+    "seo.community.title": "커뮤니티 - 인도코",
+    "seo.community.desc": "재한 인도네시아인 커뮤니티 게시판. 정보 공유, 질문, 경험담을 나누세요.",
   }
 };
 

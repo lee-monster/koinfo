@@ -254,3 +254,87 @@ function applySiteBranding() {
     }
   });
 }
+
+// SEO: Dynamic meta tag updates based on site + language + page
+var SEO_PAGES = {
+  index:     { titleKey: 'seo.index.title',     descKey: 'seo.index.desc' },
+  study:     { titleKey: 'seo.study.title',     descKey: 'seo.study.desc' },
+  work:      { titleKey: 'seo.work.title',      descKey: 'seo.work.desc' },
+  visa:      { titleKey: 'seo.visa.title',      descKey: 'seo.visa.desc' },
+  life:      { titleKey: 'seo.life.title',      descKey: 'seo.life.desc' },
+  travel:    { titleKey: 'seo.travel.title',    descKey: 'seo.travel.desc' },
+  news:      { titleKey: 'seo.news.title',      descKey: 'seo.news.desc' },
+  community: { titleKey: 'seo.community.title', descKey: 'seo.community.desc' },
+};
+
+function applySiteSEO(lang) {
+  if (!SITE) return;
+  lang = lang || SITE.lang;
+
+  var pageIdMeta = document.querySelector('meta[name="page-id"]');
+  var pageId = pageIdMeta ? pageIdMeta.content : 'index';
+  var seoPage = SEO_PAGES[pageId] || SEO_PAGES.index;
+
+  var t = (typeof translations !== 'undefined' && translations[lang]) ? translations[lang] : null;
+  var title = (t && t[seoPage.titleKey]) || (SITE.name + ' - KoInfo');
+  var desc = (t && t[seoPage.descKey]) || '';
+  var url = 'https://' + SITE.domain + '/' + (pageId === 'index' ? '' : pageId + '.html');
+  var ogImage = 'https://' + SITE.domain + '/images/og-' + SITE.id + '.png';
+  var locale = SITE.ogLocale || 'en_US';
+
+  // Update document
+  document.title = title;
+
+  // Helper to set meta content
+  function setMeta(selector, value) {
+    var el = document.querySelector(selector);
+    if (el) el.setAttribute('content', value);
+  }
+  function setLink(selector, value) {
+    var el = document.querySelector(selector);
+    if (el) el.setAttribute('href', value);
+  }
+
+  setMeta('meta[name="description"]', desc);
+  setMeta('meta[property="og:title"]', title);
+  setMeta('meta[property="og:description"]', desc);
+  setMeta('meta[property="og:image"]', ogImage);
+  setMeta('meta[property="og:url"]', url);
+  setMeta('meta[property="og:locale"]', locale);
+  setMeta('meta[name="twitter:title"]', title);
+  setMeta('meta[name="twitter:description"]', desc);
+  setMeta('meta[name="twitter:image"]', ogImage);
+  setLink('link[rel="canonical"]', url);
+
+  // Hreflang: link alternate language versions
+  document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(function(el) { el.remove(); });
+
+  var HREFLANG_MAP = {
+    indo: { lang: 'id', domain: 'indo.koinfo.kr' },
+    mong: { lang: 'mn', domain: 'mong.koinfo.kr' },
+  };
+  var pagePath = pageId === 'index' ? '/' : '/' + pageId + '.html';
+
+  Object.keys(HREFLANG_MAP).forEach(function(key) {
+    var info = HREFLANG_MAP[key];
+    var link = document.createElement('link');
+    link.rel = 'alternate';
+    link.hreflang = info.lang;
+    link.href = 'https://' + info.domain + pagePath;
+    document.head.appendChild(link);
+
+    // Korean alternate for each site
+    var linkKo = document.createElement('link');
+    linkKo.rel = 'alternate';
+    linkKo.hreflang = info.lang + '-KR';
+    linkKo.href = 'https://' + info.domain + pagePath;
+    document.head.appendChild(linkKo);
+  });
+
+  // x-default
+  var linkDefault = document.createElement('link');
+  linkDefault.rel = 'alternate';
+  linkDefault.hreflang = 'x-default';
+  linkDefault.href = 'https://koinfo.kr' + pagePath;
+  document.head.appendChild(linkDefault);
+}
