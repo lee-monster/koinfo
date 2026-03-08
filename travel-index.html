@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TravelKo - Discover Korea</title>
+  <meta name="description" content="TravelKo - Discover the best travel spots in Korea, recommended by the community">
+  <meta name="theme-color" content="#059669">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23059669'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Arial,sans-serif' font-weight='800' font-size='22' fill='%23FFFFFF'%3ET%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/travel-app.css">
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <header class="ta-topbar">
+    <a href="travel-index.html" class="ta-brand">
+      <span class="ta-brand-flag">✈️🇰🇷</span>
+      <span>TravelKo</span>
+    </a>
+    <div class="ta-search-wrap">
+      <span class="ta-search-icon">🔍</span>
+      <input type="text" class="ta-search" id="ta-search" data-i18n-ph="app.searchPh" placeholder="Search places...">
+    </div>
+    <select class="ta-lang-select" id="ta-lang-select" onchange="taSetLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="ko">한국어</option>
+      <option value="id">Bahasa</option>
+      <option value="mn">Монгол</option>
+    </select>
+    <a href="https://koinfo.kr" class="ta-koinfo-link">KoInfo ↗</a>
+  </header>
+
+  <!-- Main Layout -->
+  <div class="ta-layout">
+    <!-- Sidebar -->
+    <aside class="ta-sidebar">
+      <div class="ta-filters">
+        <div class="ta-cat-row" id="ta-cat-row">
+          <button class="ta-cat-btn active" data-cat="all" data-i18n="app.catAll">All</button>
+          <button class="ta-cat-btn" data-cat="food" data-i18n="app.catFood">Food</button>
+          <button class="ta-cat-btn" data-cat="attraction" data-i18n="app.catAttraction">Attractions</button>
+          <button class="ta-cat-btn" data-cat="cafe" data-i18n="app.catCafe">Cafe</button>
+          <button class="ta-cat-btn" data-cat="nature" data-i18n="app.catNature">Nature</button>
+          <button class="ta-cat-btn" data-cat="shopping" data-i18n="app.catShopping">Shopping</button>
+          <button class="ta-cat-btn" data-cat="nightlife" data-i18n="app.catNightlife">Nightlife</button>
+        </div>
+        <select class="ta-region-select" id="ta-region-select">
+          <option value="" data-i18n="app.regionAll">All Regions</option>
+          <option value="Seoul" data-i18n="app.regionSeoul">Seoul</option>
+          <option value="Busan" data-i18n="app.regionBusan">Busan</option>
+          <option value="Jeju" data-i18n="app.regionJeju">Jeju</option>
+          <option value="Incheon" data-i18n="app.regionIncheon">Incheon</option>
+          <option value="Gyeonggi" data-i18n="app.regionGyeonggi">Gyeonggi</option>
+          <option value="Other" data-i18n="app.regionOther">Other</option>
+        </select>
+      </div>
+
+      <!-- Spot List -->
+      <div class="ta-list" id="ta-list">
+        <div class="ta-list-status" id="ta-loading" data-i18n="app.loading">Loading spots...</div>
+      </div>
+
+      <!-- Detail Panel -->
+      <div class="ta-detail" id="ta-detail">
+        <button class="ta-detail-back" id="ta-detail-back" onclick="taBackToList()">← Back</button>
+        <div id="ta-detail-images" class="ta-detail-images"></div>
+        <div class="ta-detail-body">
+          <span id="ta-detail-cat" class="ta-spot-cat"></span>
+          <h2 id="ta-detail-name"></h2>
+          <div class="ta-detail-meta" id="ta-detail-meta"></div>
+          <div id="ta-detail-tags" class="ta-detail-tags"></div>
+          <div id="ta-detail-desc" class="ta-detail-desc"></div>
+          <div id="ta-detail-address" class="ta-detail-address"></div>
+          <div id="ta-detail-actions"></div>
+          <div id="ta-detail-by" class="ta-detail-by"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Map -->
+    <div class="ta-map-wrap">
+      <div id="ta-map"></div>
+    </div>
+  </div>
+
+  <!-- FAB -->
+  <button class="ta-fab" id="ta-fab" onclick="taShowSubmit()" data-i18n="app.shareSpot">✏️ Share a Spot</button>
+
+  <!-- Submit Modal -->
+  <div class="ta-modal-overlay" id="ta-submit-overlay">
+    <div class="ta-modal">
+      <h2 data-i18n="app.submitTitle">Share a Travel Spot</h2>
+      <p class="ta-modal-notice" data-i18n="app.submitNotice">Your submission will appear after admin review.</p>
+      <form id="ta-submit-form" onsubmit="taSubmitSpot(event)">
+        <div class="ta-form-group">
+          <label data-i18n="app.placeLabel">Place Name</label>
+          <input type="text" id="ta-sub-name" required maxlength="100" data-i18n-ph="app.placePh" placeholder="e.g. Gyeongbokgung Palace">
+        </div>
+        <div class="ta-form-group">
+          <label data-i18n="app.categoryLabel">Category</label>
+          <select id="ta-sub-category" required>
+            <option value="food" data-i18n="app.catFood">Food</option>
+            <option value="attraction" data-i18n="app.catAttraction">Attractions</option>
+            <option value="cafe" data-i18n="app.catCafe">Cafe</option>
+            <option value="nature" data-i18n="app.catNature">Nature</option>
+            <option value="shopping" data-i18n="app.catShopping">Shopping</option>
+            <option value="nightlife" data-i18n="app.catNightlife">Nightlife</option>
+          </select>
+        </div>
+        <div class="ta-form-group">
+          <label data-i18n="app.descLabel">Your Review</label>
+          <textarea id="ta-sub-desc" required maxlength="3000" rows="5" data-i18n-ph="app.descPh" placeholder="Share your experience..."></textarea>
+        </div>
+        <div class="ta-form-group">
+          <label data-i18n="app.addressLabel">Address</label>
+          <input type="text" id="ta-sub-address" maxlength="200" data-i18n-ph="app.addressPh" placeholder="Search address...">
+        </div>
+        <div class="ta-form-group">
+          <label data-i18n="app.instagramLabel">Instagram Tags</label>
+          <input type="text" id="ta-sub-instagram" maxlength="100" data-i18n-ph="app.instagramPh" placeholder="@username or #hashtag">
+        </div>
+        <div class="ta-form-group">
+          <label data-i18n="app.authorLabel">Your Name</label>
+          <input type="text" id="ta-sub-author" required maxlength="30" data-i18n-ph="app.authorPh" placeholder="Your name">
+        </div>
+        <div class="ta-form-actions">
+          <button type="button" class="ta-btn-secondary" onclick="taCloseSubmit()" data-i18n="app.cancelBtn">Cancel</button>
+          <button type="submit" class="ta-btn-primary" data-i18n="app.submitBtn">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/site-config.js"></script>
+  <script>
+    // Travel site always loads travel lang + travel-app
+    var ls = document.createElement('script');
+    ls.src = 'sites/travel/lang.js';
+    ls.onload = function() {
+      var as = document.createElement('script');
+      as.src = 'js/travel-app.js';
+      document.head.appendChild(as);
+    };
+    document.head.appendChild(ls);
+  </script>
+</body>
+</html>
