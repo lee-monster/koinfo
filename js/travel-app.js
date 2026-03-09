@@ -143,7 +143,7 @@
         : '<div class="ta-spot-thumb"><span class="ta-spot-thumb-empty">' + (CAT_ICONS[spot.category] || '📍') + '</span></div>';
 
       var meta = '';
-      if (spot.featured) meta += '<span class="ta-spot-featured">⭐ ' + t('app.featured') + '</span>';
+      if (spot.featured) meta += '<span class="ta-spot-featured">' + t('app.featured') + '</span>';
       if (spot.rating) meta += '<span class="ta-spot-rating">★ ' + spot.rating.toFixed(1) + '</span>';
       if (spot.region) meta += '<span>' + spot.region + '</span>';
 
@@ -236,8 +236,8 @@
     // Meta
     var metaHtml = '';
     if (spot.rating) metaHtml += '<span class="ta-detail-stars">★ ' + spot.rating.toFixed(1) + '</span>';
-    if (spot.featured) metaHtml += '<span style="color:var(--t-primary);font-weight:600;">⭐ ' + t('app.featured') + '</span>';
-    if (spot.region) metaHtml += '<span>📍 ' + escapeHtml(spot.region) + '</span>';
+    if (spot.featured) metaHtml += '<span style="color:var(--t-primary);font-weight:600;">' + t('app.featured') + '</span>';
+    if (spot.region) metaHtml += '<span>' + escapeHtml(spot.region) + '</span>';
     if (spot.submittedBy) metaHtml += '<span>by ' + escapeHtml(spot.submittedBy) + '</span>';
     document.getElementById('ta-detail-meta').innerHTML = metaHtml;
 
@@ -268,7 +268,7 @@
     // Address
     var addrEl = document.getElementById('ta-detail-address');
     if (spot.address) {
-      addrEl.innerHTML = '📍 ' + escapeHtml(spot.address);
+      addrEl.innerHTML = escapeHtml(spot.address);
       addrEl.style.display = '';
     } else {
       addrEl.style.display = 'none';
@@ -278,9 +278,9 @@
     var actionsEl = document.getElementById('ta-detail-actions');
     var actionsHtml = '';
     if (spot.naverMapLink) {
-      actionsHtml += '<a href="' + escapeAttr(spot.naverMapLink) + '" target="_blank" rel="noopener" class="ta-detail-naver">🗺️ ' + t('app.openNaver') + '</a>';
+      actionsHtml += '<a href="' + escapeAttr(spot.naverMapLink) + '" target="_blank" rel="noopener" class="ta-detail-naver">' + t('app.openNaver') + '</a>';
     } else if (spot.lat && spot.lng) {
-      actionsHtml += '<a href="https://map.naver.com/p/search/' + spot.lat + ',' + spot.lng + '?c=' + spot.lng + ',' + spot.lat + ',15,0,0,0,dh" target="_blank" rel="noopener" class="ta-detail-naver">🗺️ ' + t('app.openNaver') + '</a>';
+      actionsHtml += '<a href="https://map.naver.com/p/search/' + spot.lat + ',' + spot.lng + '?c=' + spot.lng + ',' + spot.lat + ',15,0,0,0,dh" target="_blank" rel="noopener" class="ta-detail-naver">' + t('app.openNaver') + '</a>';
     }
     actionsEl.innerHTML = actionsHtml;
 
@@ -334,7 +334,7 @@
   function createMap() {
     if (typeof naver === 'undefined' || !naver.maps) return;
 
-    state.map = new naver.maps.Map('ta-map', {
+    window._taMap = state.map = new naver.maps.Map('ta-map', {
       center: new naver.maps.LatLng(37.5665, 126.978),
       zoom: 7,
       mapTypeControl: true,

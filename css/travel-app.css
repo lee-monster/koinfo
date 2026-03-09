@@ -33,46 +33,52 @@ body {
   color: var(--t-gray-800);
 }
 
-/* === Top Bar === */
+/* === Top Bar (inside sidebar) === */
 .ta-topbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  height: 56px; background: var(--t-white); border-bottom: 1px solid var(--t-gray-200);
-  display: flex; align-items: center; padding: 0 16px; gap: 12px;
+  height: 52px; background: var(--t-white); border-bottom: 1px solid var(--t-gray-200);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 14px; flex-shrink: 0;
 }
 .ta-brand {
-  display: flex; align-items: center; gap: 8px;
-  font-weight: 800; font-size: 1.15rem; color: var(--t-primary);
+  display: flex; align-items: center;
   text-decoration: none; flex-shrink: 0;
 }
 .ta-brand:hover { text-decoration: none; }
-.ta-brand-flag { font-size: 1.3rem; }
+.ta-brand-logo {
+  height: 32px; width: auto; object-fit: contain; border-radius: 4px;
+}
+.ta-topbar-actions {
+  display: flex; align-items: center; gap: 8px;
+}
+.ta-lang-select {
+  padding: 5px 8px; border: 1px solid var(--t-gray-200); border-radius: var(--t-radius-sm);
+  font-size: 0.8rem; background: var(--t-white); cursor: pointer; color: var(--t-gray-700);
+}
+.ta-koinfo-link {
+  font-size: 0.78rem; color: var(--t-gray-300); text-decoration: none;
+  padding: 5px 10px; border-radius: var(--t-radius-sm); transition: all var(--t-transition);
+}
+.ta-koinfo-link:hover { color: var(--t-primary); background: var(--t-primary-bg); text-decoration: none; }
+
+/* === Search (inside sidebar) === */
 .ta-search-wrap {
-  flex: 1; max-width: 400px; position: relative;
+  padding: 10px 14px 0; position: relative; flex-shrink: 0;
 }
 .ta-search {
   width: 100%; padding: 8px 14px 8px 36px;
   border: 1px solid var(--t-gray-200); border-radius: 50px;
-  font-size: 0.9rem; background: var(--t-gray-50);
+  font-size: 0.88rem; background: var(--t-gray-50);
   transition: border-color var(--t-transition);
 }
 .ta-search:focus { outline: none; border-color: var(--t-primary); background: var(--t-white); }
 .ta-search-icon {
-  position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
-  font-size: 0.9rem; color: var(--t-gray-300); pointer-events: none;
+  position: absolute; left: 26px; top: calc(10px + 50%); transform: translateY(-50%);
+  color: var(--t-gray-300); pointer-events: none;
 }
-.ta-lang-select {
-  padding: 6px 12px; border: 1px solid var(--t-gray-200); border-radius: var(--t-radius-sm);
-  font-size: 0.85rem; background: var(--t-white); cursor: pointer; color: var(--t-gray-700);
-}
-.ta-koinfo-link {
-  font-size: 0.8rem; color: var(--t-gray-300); text-decoration: none;
-  padding: 6px 12px; border-radius: var(--t-radius-sm); transition: all var(--t-transition);
-}
-.ta-koinfo-link:hover { color: var(--t-primary); background: var(--t-primary-bg); text-decoration: none; }
 
 /* === Main Layout === */
 .ta-layout {
-  display: flex; height: calc(100vh - 56px); margin-top: 56px;
+  display: flex; height: 100vh; transition: all 0.3s ease;
 }
 
 /* === Sidebar === */
@@ -80,18 +86,45 @@ body {
   width: var(--sidebar-width); height: 100%;
   background: var(--t-white); border-right: 1px solid var(--t-gray-200);
   display: flex; flex-direction: column; flex-shrink: 0;
-  overflow: hidden;
+  overflow: hidden; transition: width 0.3s ease, opacity 0.3s ease;
 }
+
+/* Sidebar collapsed state */
+.ta-layout.sidebar-collapsed .ta-sidebar {
+  width: 0; opacity: 0; overflow: hidden; border-right: none;
+}
+.ta-layout.sidebar-collapsed .ta-sidebar-toggle svg {
+  transform: rotate(180deg);
+}
+
+/* === Sidebar Toggle Button === */
+.ta-sidebar-toggle {
+  position: absolute; top: 12px; z-index: 101;
+  left: var(--sidebar-width);
+  width: 28px; height: 48px;
+  background: var(--t-white); border: 1px solid var(--t-gray-200);
+  border-left: none; border-radius: 0 8px 8px 0;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: var(--t-gray-600); transition: all 0.3s ease;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.06);
+}
+.ta-sidebar-toggle:hover { background: var(--t-gray-50); color: var(--t-primary); }
+.ta-sidebar-toggle svg { transition: transform 0.3s ease; }
+.ta-layout.sidebar-collapsed .ta-sidebar-toggle {
+  left: 0;
+}
+
+/* === Filters === */
 .ta-filters {
-  padding: 12px 16px; border-bottom: 1px solid var(--t-gray-100);
+  padding: 10px 14px; border-bottom: 1px solid var(--t-gray-100);
   display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;
 }
 .ta-cat-row {
-  display: flex; gap: 6px; flex-wrap: wrap;
+  display: flex; gap: 5px; flex-wrap: wrap;
 }
 .ta-cat-btn {
-  padding: 5px 12px; border: 1px solid var(--t-gray-200); border-radius: 50px;
-  background: var(--t-white); color: var(--t-gray-600); font-size: 0.78rem;
+  padding: 4px 10px; border: 1px solid var(--t-gray-200); border-radius: 50px;
+  background: var(--t-white); color: var(--t-gray-600); font-size: 0.76rem;
   font-weight: 500; cursor: pointer; transition: all var(--t-transition); white-space: nowrap;
 }
 .ta-cat-btn:hover { border-color: var(--t-primary); color: var(--t-primary); }
@@ -273,14 +306,8 @@ body {
 .cat-shopping { background: #F5F3FF; color: #8B5CF6; }
 .cat-nightlife { background: #FDF2F8; color: #EC4899; }
 
-/* === Footer === */
-.ta-footer {
-  display: none; /* Hidden in map view, shown in mobile bottom sheet */
-}
-
 /* === Mobile Responsive === */
 @media (max-width: 768px) {
-  .ta-topbar { padding: 0 10px; gap: 8px; }
   .ta-koinfo-link { display: none; }
   .ta-layout { flex-direction: column-reverse; }
   .ta-sidebar {
@@ -288,6 +315,10 @@ body {
     border-top: 1px solid var(--t-gray-200);
   }
   .ta-map-wrap { height: 55vh; }
+  .ta-sidebar-toggle { display: none; }
+  .ta-layout.sidebar-collapsed .ta-sidebar {
+    width: 100%; opacity: 1; border-right: none;
+  }
   .ta-fab { bottom: calc(45vh + 12px); right: 12px; padding: 12px 18px; font-size: 0.85rem; }
   .ta-spot-thumb { width: 64px; height: 64px; }
   .ta-detail-images img { height: 180px; }
@@ -295,8 +326,8 @@ body {
 }
 
 @media (max-width: 480px) {
-  .ta-brand span:last-child { display: none; }
-  .ta-search-wrap { max-width: none; }
+  .ta-brand-logo { height: 26px; }
+  .ta-search-wrap { padding: 8px 10px 0; }
   .ta-sidebar { height: 40vh; }
   .ta-map-wrap { height: 60vh; }
   .ta-fab { bottom: calc(40vh + 8px); padding: 10px 16px; font-size: 0.82rem; }
