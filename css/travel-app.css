@@ -243,6 +243,20 @@ body {
   justify-content: center; background: var(--t-gray-100); color: var(--t-gray-600);
 }
 
+/* Map language selector */
+.ta-map-lang {
+  display: flex; gap: 2px; margin: 10px 0 0 10px;
+  background: var(--t-white); border-radius: 4px; overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+.ta-map-lang-btn {
+  padding: 5px 10px; border: none; background: var(--t-white);
+  font-size: 0.72rem; font-weight: 600; color: var(--t-gray-600);
+  cursor: pointer; transition: all var(--t-transition);
+}
+.ta-map-lang-btn:hover { background: var(--t-gray-100); }
+.ta-map-lang-btn.active { background: var(--t-primary); color: var(--t-white); }
+
 /* FAB - Share button */
 .ta-fab {
   position: fixed; bottom: 24px; right: 24px; z-index: 50;

@@ -303,6 +303,9 @@
   };
 
   // === Map ===
+  var mapClientId = '';
+  var mapLang = localStorage.getItem('travelko_map_lang') || 'ko';
+
   function initMap() {
     fetch('/api/map-config')
       .then(function(res) { return res.json(); })
@@ -311,19 +314,39 @@
           showMapFallback(t('app.mapError'));
           return;
         }
-        var script = document.createElement('script');
-        script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=' + data.clientId + '&submodules=geocoder';
-        script.onload = function() {
-          createMap();
-        };
-        script.onerror = function() {
-          showMapFallback(t('app.mapError'));
-        };
-        document.head.appendChild(script);
+        mapClientId = data.clientId;
+        loadMapScript(mapLang);
       })
       .catch(function() {
         showMapFallback(t('app.mapError'));
       });
+  }
+
+  function loadMapScript(lang) {
+    // Remove existing naver maps script if reloading
+    var existing = document.getElementById('naver-maps-script');
+    if (existing) existing.remove();
+
+    // Clear existing map state
+    if (state.map) {
+      state.map.destroy();
+      state.map = null;
+      window._taMap = null;
+      state.mapLoaded = false;
+      state.markers = [];
+      state.infoWindows = [];
+    }
+
+    var script = document.createElement('script');
+    script.id = 'naver-maps-script';
+    script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=' + mapClientId + '&submodules=geocoder&language=' + lang;
+    script.onload = function() {
+      createMap();
+    };
+    script.onerror = function() {
+      showMapFallback(t('app.mapError'));
+    };
+    document.head.appendChild(script);
   }
 
   function showMapFallback(msg) {
@@ -338,16 +361,70 @@
       center: new naver.maps.LatLng(37.5665, 126.978),
       zoom: 7,
       mapTypeControl: true,
+      mapTypeControlOptions: { position: naver.maps.Position.TOP_RIGHT },
       zoomControl: true,
-      zoomControlOptions: { position: naver.maps.Position.TOP_RIGHT }
+      zoomControlOptions: { position: naver.maps.Position.RIGHT_CENTER },
+      scaleControl: true,
+      scaleControlOptions: { position: naver.maps.Position.RIGHT_BOTTOM }
     });
 
     state.mapLoaded = true;
+
+    // Add language selector control
+    addMapLangControl();
 
     // Render markers for already-loaded spots
     if (state.spots.length > 0) {
       renderMapMarkers(filterBySearch(state.spots));
     }
+  }
+
+  function addMapLangControl() {
+    var langOptions = [
+      { code: 'ko', label: 'KR' },
+      { code: 'en', label: 'EN' },
+      { code: 'ja', label: 'JP' },
+      { code: 'zh', label: 'CN' }
+    ];
+
+    var html = '<div class="ta-map-lang">';
+    langOptions.forEach(function(opt) {
+      var active = opt.code === mapLang ? ' active' : '';
+      html += '<button class="ta-map-lang-btn' + active + '" data-lang="' + opt.code + '">' + opt.label + '</button>';
+    });
+    html += '</div>';
+
+    var el = document.createElement('div');
+    el.innerHTML = html;
+    var control = el.firstChild;
+
+    control.addEventListener('click', function(e) {
+      var btn = e.target.closest('.ta-map-lang-btn');
+      if (!btn) return;
+      var lang = btn.getAttribute('data-lang');
+      if (lang === mapLang) return;
+
+      // Save center/zoom before reload
+      var center = state.map.getCenter();
+      var zoom = state.map.getZoom();
+
+      mapLang = lang;
+      localStorage.setItem('travelko_map_lang', lang);
+
+      // Reload map with new language
+      loadMapScript(lang);
+
+      // Restore center/zoom after reload
+      var checkReady = setInterval(function() {
+        if (state.map && state.mapLoaded) {
+          clearInterval(checkReady);
+          state.map.setCenter(center);
+          state.map.setZoom(zoom);
+        }
+      }, 100);
+    });
+
+    state.map.controls[naver.maps.Position.TOP_LEFT].push(control);
   }
 
   function renderMapMarkers(spots) {
