@@ -312,7 +312,7 @@
           return;
         }
         var script = document.createElement('script');
-        script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=' + data.clientId + '&submodules=geocoder';
+        script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=' + data.clientId + '&ncpClientSecret=' + data.clientSecret + '&submodules=geocoder';
         script.onload = function() {
           createMap();
         };
