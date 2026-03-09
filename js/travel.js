@@ -114,7 +114,7 @@ function initTravelMap() {
           return;
         }
         var script = document.createElement('script');
-        script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=' + data.clientId + '&ncpClientSecret=' + data.clientSecret + '&submodules=geocoder';
+        script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=' + data.clientId + '&submodules=geocoder';
         script.onload = function() { createMainMap(); };
         script.onerror = function() {
           mapEl.innerHTML = '<div class="travel-map-fallback"><p style="color:var(--gray-600);padding:40px;text-align:center;">Failed to load Naver Map.</p></div>';
