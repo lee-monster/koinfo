@@ -245,7 +245,8 @@ body {
 
 /* Map language selector */
 .ta-map-lang {
-  display: flex; gap: 2px; margin: 10px 0 0 10px;
+  position: absolute; top: 46px; left: 10px; z-index: 5;
+  display: flex; gap: 2px;
   background: var(--t-white); border-radius: 4px; overflow: hidden;
   box-shadow: 0 1px 4px rgba(0,0,0,0.15);
 }
@@ -259,7 +260,8 @@ body {
 
 /* Map provider toggle */
 .ta-map-provider {
-  display: flex; gap: 2px; margin: 10px 0 0 10px;
+  position: absolute; top: 10px; left: 10px; z-index: 5;
+  display: flex; gap: 2px;
   background: var(--t-white); border-radius: 4px; overflow: hidden;
   box-shadow: 0 1px 4px rgba(0,0,0,0.15);
 }

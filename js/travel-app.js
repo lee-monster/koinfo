@@ -122,7 +122,7 @@
         window._taMap = null;
         var script = document.createElement('script');
         script.id = 'map-sdk-script';
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=' + config.googleKey + '&libraries=geocoding&language=' + lang;
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=' + config.googleKey + '&language=' + lang;
         script.onload = function() { cb(); };
         script.onerror = function() { cb(new Error('Failed to load Google Maps SDK')); };
         document.head.appendChild(script);
@@ -558,6 +558,10 @@
   function addMapProviderToggle() {
     if (!state.mapConfig || !state.mapConfig.clientId || !state.mapConfig.googleKey) return;
 
+    // Remove existing toggle
+    var existing = document.querySelector('.ta-map-provider');
+    if (existing) existing.remove();
+
     var html = '<div class="ta-map-provider">' +
       '<button class="ta-map-provider-btn' + (state.mapProvider === 'naver' ? ' active' : '') + '" data-provider="naver">' + t('app.mapNaver') + '</button>' +
       '<button class="ta-map-provider-btn' + (state.mapProvider === 'google' ? ' active' : '') + '" data-provider="google">' + t('app.mapGoogle') + '</button>' +
@@ -573,7 +577,8 @@
       switchMapProvider(btn.dataset.provider);
     });
 
-    mp().addControlElement(state.map, control);
+    // Append directly to map wrapper (absolute positioned via CSS)
+    document.querySelector('.ta-map-wrap').appendChild(control);
   }
 
   function switchMapProvider(provider) {
@@ -600,6 +605,10 @@
   }
 
   function addMapLangControl() {
+    // Remove existing
+    var existing = document.querySelector('.ta-map-lang');
+    if (existing) existing.remove();
+
     var langOptions = [
       { code: 'ko', label: 'KR' },
       { code: 'en', label: 'EN' },
@@ -634,7 +643,8 @@
       loadAndCreateMap(center, zoom);
     });
 
-    mp().addControlElement(state.map, control);
+    // Append directly to map wrapper (absolute positioned via CSS)
+    document.querySelector('.ta-map-wrap').appendChild(control);
   }
 
   function renderMapMarkers(spots) {
