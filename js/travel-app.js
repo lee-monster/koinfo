@@ -56,8 +56,7 @@
         var map = new naver.maps.Map(elementId, {
           center: new naver.maps.LatLng(37.5665, 126.978),
           zoom: 7,
-          mapTypeControl: true,
-          mapTypeControlOptions: { position: naver.maps.Position.TOP_RIGHT },
+          mapTypeControl: false,
           zoomControl: true,
           zoomControlOptions: { position: naver.maps.Position.RIGHT_CENTER },
           scaleControl: true,
@@ -131,11 +130,7 @@
         return new google.maps.Map(document.getElementById(elementId), {
           center: { lat: 37.5665, lng: 126.978 },
           zoom: 7,
-          mapTypeControl: true,
-          mapTypeControlOptions: {
-            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-            position: google.maps.ControlPosition.TOP_RIGHT
-          },
+          mapTypeControl: false,
           zoomControl: true,
           streetViewControl: false,
           fullscreenControl: false
@@ -569,6 +564,7 @@
 
     // Add controls
     addMapProviderToggle();
+    addMapTypeToggle();
 
     // Render markers for already-loaded spots
     if (state.spots.length > 0) {
@@ -600,6 +596,45 @@
     });
 
     // Append directly to map wrapper (absolute positioned via CSS)
+    document.querySelector('.ta-map-wrap').appendChild(control);
+  }
+
+  // === Map Type Toggle (Map / Satellite) ===
+  function addMapTypeToggle() {
+    var existing = document.querySelector('.ta-map-type');
+    if (existing) existing.remove();
+
+    var isNaver = state.mapProvider === 'naver';
+    // Naver: NORMAL / SATELLITE, Google: roadmap / satellite
+    var currentType = isNaver
+      ? (state.map.getMapTypeId && state.map.getMapTypeId() === 'satellite' ? 'satellite' : 'normal')
+      : (state.map.getMapTypeId && state.map.getMapTypeId() === 'satellite' ? 'satellite' : 'normal');
+
+    var html = '<div class="ta-map-type">' +
+      '<button class="ta-map-type-btn' + (currentType === 'normal' ? ' active' : '') + '" data-type="normal">Map</button>' +
+      '<button class="ta-map-type-btn' + (currentType === 'satellite' ? ' active' : '') + '" data-type="satellite">Satellite</button>' +
+    '</div>';
+
+    var el = document.createElement('div');
+    el.innerHTML = html;
+    var control = el.firstChild;
+
+    control.addEventListener('click', function(e) {
+      var btn = e.target.closest('.ta-map-type-btn');
+      if (!btn) return;
+      var type = btn.dataset.type;
+
+      // Update active state
+      control.querySelectorAll('.ta-map-type-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+
+      if (state.mapProvider === 'naver') {
+        state.map.setMapTypeId(type === 'satellite' ? naver.maps.MapTypeId.SATELLITE : naver.maps.MapTypeId.NORMAL);
+      } else {
+        state.map.setMapTypeId(type === 'satellite' ? 'satellite' : 'roadmap');
+      }
+    });
+
     document.querySelector('.ta-map-wrap').appendChild(control);
   }
 
