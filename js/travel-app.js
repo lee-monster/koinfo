@@ -18,13 +18,181 @@
     map: null,
     markers: [],
     infoWindows: [],
-    mapLoaded: false
+    mapLoaded: false,
+    mapProvider: localStorage.getItem('travelko_map_provider') || 'naver',
+    mapConfig: null
   };
 
   var CAT_ICONS = {
     food: '🍜', attraction: '🏛️', cafe: '☕',
     nature: '🌿', shopping: '🛍️', nightlife: '🌙'
   };
+
+  var CAT_COLORS = {
+    food: '#EF4444', attraction: '#3B82F6', cafe: '#F59E0B',
+    nature: '#22C55E', shopping: '#8B5CF6', nightlife: '#EC4899'
+  };
+
+  // === Map Providers Abstraction ===
+  var MapProviders = {
+    naver: {
+      loadSDK: function(config, lang, cb) {
+        var existing = document.getElementById('map-sdk-script');
+        if (existing) existing.remove();
+        // Reset naver namespace when reloading
+        if (state.map) {
+          try { state.map.destroy(); } catch(e) {}
+          state.map = null;
+          window._taMap = null;
+        }
+        var script = document.createElement('script');
+        script.id = 'map-sdk-script';
+        script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=' + config.clientId + '&submodules=geocoder&language=' + lang;
+        script.onload = function() { cb(); };
+        script.onerror = function() { cb(new Error('Failed to load Naver Map SDK')); };
+        document.head.appendChild(script);
+      },
+      createMap: function(elementId) {
+        var map = new naver.maps.Map(elementId, {
+          center: new naver.maps.LatLng(37.5665, 126.978),
+          zoom: 7,
+          mapTypeControl: true,
+          mapTypeControlOptions: { position: naver.maps.Position.TOP_RIGHT },
+          zoomControl: true,
+          zoomControlOptions: { position: naver.maps.Position.RIGHT_CENTER },
+          scaleControl: true,
+          scaleControlOptions: { position: naver.maps.Position.RIGHT_BOTTOM }
+        });
+        return map;
+      },
+      addMarker: function(map, lat, lng, color, icon) {
+        return new naver.maps.Marker({
+          position: new naver.maps.LatLng(lat, lng),
+          map: map,
+          icon: {
+            content: '<div style="width:30px;height:30px;background:' + color + ';border-radius:50%;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;">' + icon + '</div>',
+            anchor: new naver.maps.Point(15, 15)
+          }
+        });
+      },
+      createInfoWindow: function(html) {
+        return new naver.maps.InfoWindow({
+          content: html, borderWidth: 0, backgroundColor: 'transparent',
+          anchorSize: new naver.maps.Size(0, 0), pixelOffset: new naver.maps.Point(0, -20)
+        });
+      },
+      openInfoWindow: function(iw, map, marker) { iw.open(map, marker); },
+      closeInfoWindow: function(iw) { iw.close(); },
+      removeMarker: function(m) { m.setMap(null); },
+      onMarkerClick: function(marker, cb) { naver.maps.Event.addListener(marker, 'click', cb); },
+      panTo: function(map, lat, lng) { map.panTo(new naver.maps.LatLng(lat, lng)); },
+      getCenter: function(map) { var c = map.getCenter(); return { lat: c.lat(), lng: c.lng() }; },
+      setCenter: function(map, lat, lng) { map.setCenter(new naver.maps.LatLng(lat, lng)); },
+      getZoom: function(map) { return map.getZoom(); },
+      setZoom: function(map, z) { map.setZoom(z); },
+      triggerResize: function(map) { naver.maps.Event.trigger(map, 'resize'); },
+      fitBounds: function(map, spots) {
+        var bounds = new naver.maps.LatLngBounds();
+        spots.forEach(function(s) { if (s.lat && s.lng) bounds.extend(new naver.maps.LatLng(s.lat, s.lng)); });
+        map.fitBounds(bounds, { top: 50, right: 50, bottom: 50, left: 50 });
+      },
+      addControlElement: function(map, el) {
+        map.controls[naver.maps.Position.TOP_LEFT].push(el);
+      },
+      geocode: function(query, cb) {
+        if (typeof naver === 'undefined' || !naver.maps || !naver.maps.Service) { cb(null); return; }
+        naver.maps.Service.geocode({ query: query }, function(status, response) {
+          if (status === naver.maps.Service.Status.OK && response.v2.addresses.length) {
+            var item = response.v2.addresses[0];
+            cb({ lat: parseFloat(item.y), lng: parseFloat(item.x) });
+          } else { cb(null); }
+        });
+      },
+      getExternalMapUrl: function(spot) {
+        if (spot.naverMapLink) return spot.naverMapLink;
+        return 'https://map.naver.com/p/search/' + spot.lat + ',' + spot.lng + '?c=' + spot.lng + ',' + spot.lat + ',15,0,0,0,dh';
+      }
+    },
+
+    google: {
+      loadSDK: function(config, lang, cb) {
+        var existing = document.getElementById('map-sdk-script');
+        if (existing) existing.remove();
+        state.map = null;
+        window._taMap = null;
+        var script = document.createElement('script');
+        script.id = 'map-sdk-script';
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=' + config.googleKey + '&libraries=geocoding&language=' + lang;
+        script.onload = function() { cb(); };
+        script.onerror = function() { cb(new Error('Failed to load Google Maps SDK')); };
+        document.head.appendChild(script);
+      },
+      createMap: function(elementId) {
+        return new google.maps.Map(document.getElementById(elementId), {
+          center: { lat: 37.5665, lng: 126.978 },
+          zoom: 7,
+          mapTypeControl: true,
+          zoomControl: true
+        });
+      },
+      _svgIcon: function(color, icon) {
+        // For Google, use a simple colored circle marker
+        var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">' +
+          '<circle cx="15" cy="15" r="12" fill="' + color + '" stroke="white" stroke-width="3"/>' +
+          '</svg>';
+        return {
+          url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg),
+          scaledSize: new google.maps.Size(30, 30),
+          anchor: new google.maps.Point(15, 15)
+        };
+      },
+      addMarker: function(map, lat, lng, color, icon) {
+        return new google.maps.Marker({
+          position: { lat: lat, lng: lng },
+          map: map,
+          icon: this._svgIcon(color, icon)
+        });
+      },
+      createInfoWindow: function(html) {
+        return new google.maps.InfoWindow({ content: html });
+      },
+      openInfoWindow: function(iw, map, marker) { iw.open(map, marker); },
+      closeInfoWindow: function(iw) { iw.close(); },
+      removeMarker: function(m) { m.setMap(null); },
+      onMarkerClick: function(marker, cb) { marker.addListener('click', cb); },
+      panTo: function(map, lat, lng) { map.panTo({ lat: lat, lng: lng }); },
+      getCenter: function(map) { var c = map.getCenter(); return { lat: c.lat(), lng: c.lng() }; },
+      setCenter: function(map, lat, lng) { map.setCenter({ lat: lat, lng: lng }); },
+      getZoom: function(map) { return map.getZoom(); },
+      setZoom: function(map, z) { map.setZoom(z); },
+      triggerResize: function(map) { google.maps.event.trigger(map, 'resize'); },
+      fitBounds: function(map, spots) {
+        var bounds = new google.maps.LatLngBounds();
+        spots.forEach(function(s) { if (s.lat && s.lng) bounds.extend({ lat: s.lat, lng: s.lng }); });
+        map.fitBounds(bounds, 50);
+      },
+      addControlElement: function(map, el) {
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(el);
+      },
+      geocode: function(query, cb) {
+        if (typeof google === 'undefined' || !google.maps) { cb(null); return; }
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ address: query }, function(results, status) {
+          if (status === 'OK' && results.length) {
+            var loc = results[0].geometry.location;
+            cb({ lat: loc.lat(), lng: loc.lng() });
+          } else { cb(null); }
+        });
+      },
+      getExternalMapUrl: function(spot) {
+        return 'https://www.google.com/maps/search/?api=1&query=' + spot.lat + ',' + spot.lng;
+      }
+    }
+  };
+
+  function mp() {
+    return MapProviders[state.mapProvider] || MapProviders.naver;
+  }
 
   // === i18n ===
   function t(key) {
@@ -46,6 +214,12 @@
     document.querySelectorAll('[data-i18n-ph]').forEach(function(el) {
       var key = el.getAttribute('data-i18n-ph');
       el.placeholder = t(key);
+    });
+    // Update provider toggle labels
+    var toggleBtns = document.querySelectorAll('.ta-map-provider-btn');
+    toggleBtns.forEach(function(btn) {
+      if (btn.dataset.provider === 'naver') btn.textContent = t('app.mapNaver');
+      if (btn.dataset.provider === 'google') btn.textContent = t('app.mapGoogle');
     });
   }
 
@@ -274,13 +448,18 @@
       addrEl.style.display = 'none';
     }
 
-    // Actions (Naver Map link)
+    // Actions - dynamic map link based on current provider
     var actionsEl = document.getElementById('ta-detail-actions');
     var actionsHtml = '';
-    if (spot.naverMapLink) {
+    if (spot.lat && spot.lng) {
+      var p = mp();
+      var mapUrl = p.getExternalMapUrl(spot);
+      var isGoogle = state.mapProvider === 'google';
+      var btnClass = isGoogle ? 'ta-detail-google' : 'ta-detail-naver';
+      var label = isGoogle ? t('app.openGoogle') : t('app.openNaver');
+      actionsHtml += '<a href="' + escapeAttr(mapUrl) + '" target="_blank" rel="noopener" class="' + btnClass + '">' + label + '</a>';
+    } else if (spot.naverMapLink) {
       actionsHtml += '<a href="' + escapeAttr(spot.naverMapLink) + '" target="_blank" rel="noopener" class="ta-detail-naver">' + t('app.openNaver') + '</a>';
-    } else if (spot.lat && spot.lng) {
-      actionsHtml += '<a href="https://map.naver.com/p/search/' + spot.lat + ',' + spot.lng + '?c=' + spot.lng + ',' + spot.lat + ',15,0,0,0,dh" target="_blank" rel="noopener" class="ta-detail-naver">' + t('app.openNaver') + '</a>';
     }
     actionsEl.innerHTML = actionsHtml;
 
@@ -303,50 +482,48 @@
   };
 
   // === Map ===
-  var mapClientId = '';
   var mapLang = localStorage.getItem('travelko_map_lang') || 'ko';
 
   function initMap() {
     fetch('/api/map-config')
       .then(function(res) { return res.json(); })
       .then(function(data) {
-        if (!data.clientId) {
+        state.mapConfig = data;
+
+        // Fallback logic
+        if (state.mapProvider === 'google' && !data.googleKey) {
+          state.mapProvider = 'naver';
+          localStorage.setItem('travelko_map_provider', 'naver');
+        }
+        if (!data.clientId && !data.googleKey) {
           showMapFallback(t('app.mapError'));
           return;
         }
-        mapClientId = data.clientId;
-        loadMapScript(mapLang);
+        if (!data.clientId && data.googleKey) {
+          state.mapProvider = 'google';
+          localStorage.setItem('travelko_map_provider', 'google');
+        }
+
+        loadAndCreateMap();
       })
       .catch(function() {
         showMapFallback(t('app.mapError'));
       });
   }
 
-  function loadMapScript(lang) {
-    // Remove existing naver maps script if reloading
-    var existing = document.getElementById('naver-maps-script');
-    if (existing) existing.remove();
+  function loadAndCreateMap(restoreCenter, restoreZoom) {
+    var p = mp();
+    state.mapLoaded = false;
+    state.markers = [];
+    state.infoWindows = [];
 
-    // Clear existing map state
-    if (state.map) {
-      state.map.destroy();
-      state.map = null;
-      window._taMap = null;
-      state.mapLoaded = false;
-      state.markers = [];
-      state.infoWindows = [];
-    }
-
-    var script = document.createElement('script');
-    script.id = 'naver-maps-script';
-    script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=' + mapClientId + '&submodules=geocoder&language=' + lang;
-    script.onload = function() {
-      createMap();
-    };
-    script.onerror = function() {
-      showMapFallback(t('app.mapError'));
-    };
-    document.head.appendChild(script);
+    p.loadSDK(state.mapConfig, mapLang, function(err) {
+      if (err) {
+        showMapFallback(t('app.mapError'));
+        return;
+      }
+      createMap(restoreCenter, restoreZoom);
+    });
   }
 
   function showMapFallback(msg) {
@@ -354,29 +531,72 @@
     mapEl.innerHTML = '<div class="ta-map-fallback"><p>' + escapeHtml(msg) + '</p></div>';
   }
 
-  function createMap() {
-    if (typeof naver === 'undefined' || !naver.maps) return;
-
-    window._taMap = state.map = new naver.maps.Map('ta-map', {
-      center: new naver.maps.LatLng(37.5665, 126.978),
-      zoom: 7,
-      mapTypeControl: true,
-      mapTypeControlOptions: { position: naver.maps.Position.TOP_RIGHT },
-      zoomControl: true,
-      zoomControlOptions: { position: naver.maps.Position.RIGHT_CENTER },
-      scaleControl: true,
-      scaleControlOptions: { position: naver.maps.Position.RIGHT_BOTTOM }
-    });
-
+  function createMap(restoreCenter, restoreZoom) {
+    var p = mp();
+    window._taMap = state.map = p.createMap('ta-map');
     state.mapLoaded = true;
 
-    // Add language selector control
+    // Restore center/zoom if switching
+    if (restoreCenter) {
+      p.setCenter(state.map, restoreCenter.lat, restoreCenter.lng);
+    }
+    if (restoreZoom) {
+      p.setZoom(state.map, restoreZoom);
+    }
+
+    // Add controls
     addMapLangControl();
+    addMapProviderToggle();
 
     // Render markers for already-loaded spots
     if (state.spots.length > 0) {
       renderMapMarkers(filterBySearch(state.spots));
     }
+  }
+
+  // === Map Provider Toggle ===
+  function addMapProviderToggle() {
+    if (!state.mapConfig || !state.mapConfig.clientId || !state.mapConfig.googleKey) return;
+
+    var html = '<div class="ta-map-provider">' +
+      '<button class="ta-map-provider-btn' + (state.mapProvider === 'naver' ? ' active' : '') + '" data-provider="naver">' + t('app.mapNaver') + '</button>' +
+      '<button class="ta-map-provider-btn' + (state.mapProvider === 'google' ? ' active' : '') + '" data-provider="google">' + t('app.mapGoogle') + '</button>' +
+    '</div>';
+
+    var el = document.createElement('div');
+    el.innerHTML = html;
+    var control = el.firstChild;
+
+    control.addEventListener('click', function(e) {
+      var btn = e.target.closest('.ta-map-provider-btn');
+      if (!btn || btn.dataset.provider === state.mapProvider) return;
+      switchMapProvider(btn.dataset.provider);
+    });
+
+    mp().addControlElement(state.map, control);
+  }
+
+  function switchMapProvider(provider) {
+    var p = mp();
+    var center = null;
+    var zoom = null;
+
+    if (state.map && state.mapLoaded) {
+      center = p.getCenter(state.map);
+      zoom = p.getZoom(state.map);
+    }
+
+    // Clean up
+    state.markers.forEach(function(m) { p.removeMarker(m); });
+    state.markers = [];
+    state.infoWindows.forEach(function(iw) { p.closeInfoWindow(iw); });
+    state.infoWindows = [];
+
+    state.mapProvider = provider;
+    localStorage.setItem('travelko_map_provider', provider);
+
+    // Reload map with new provider
+    loadAndCreateMap(center, zoom);
   }
 
   function addMapLangControl() {
@@ -404,84 +624,56 @@
       var lang = btn.getAttribute('data-lang');
       if (lang === mapLang) return;
 
-      // Save center/zoom before reload
-      var center = state.map.getCenter();
-      var zoom = state.map.getZoom();
+      var p = mp();
+      var center = p.getCenter(state.map);
+      var zoom = p.getZoom(state.map);
 
       mapLang = lang;
       localStorage.setItem('travelko_map_lang', lang);
 
-      // Reload map with new language
-      loadMapScript(lang);
-
-      // Restore center/zoom after reload
-      var checkReady = setInterval(function() {
-        if (state.map && state.mapLoaded) {
-          clearInterval(checkReady);
-          state.map.setCenter(center);
-          state.map.setZoom(zoom);
-        }
-      }, 100);
+      loadAndCreateMap(center, zoom);
     });
 
-    state.map.controls[naver.maps.Position.TOP_LEFT].push(control);
+    mp().addControlElement(state.map, control);
   }
 
   function renderMapMarkers(spots) {
     if (!state.map || !state.mapLoaded) return;
+    var p = mp();
 
     // Clear existing
-    state.markers.forEach(function(m) { m.setMap(null); });
+    state.markers.forEach(function(m) { p.removeMarker(m); });
     state.markers = [];
-    state.infoWindows.forEach(function(iw) { iw.close(); });
+    state.infoWindows.forEach(function(iw) { p.closeInfoWindow(iw); });
     state.infoWindows = [];
 
-    var bounds = new naver.maps.LatLngBounds();
     var hasValidCoords = false;
 
     spots.forEach(function(spot) {
       if (!spot.lat || !spot.lng) return;
-
       hasValidCoords = true;
-      var pos = new naver.maps.LatLng(spot.lat, spot.lng);
-      bounds.extend(pos);
 
-      var catColors = {
-        food: '#EF4444', attraction: '#3B82F6', cafe: '#F59E0B',
-        nature: '#22C55E', shopping: '#8B5CF6', nightlife: '#EC4899'
-      };
-      var color = catColors[spot.category] || '#666';
-
-      var marker = new naver.maps.Marker({
-        position: pos,
-        map: state.map,
-        icon: {
-          content: '<div style="width:30px;height:30px;background:' + color + ';border-radius:50%;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;">' + (CAT_ICONS[spot.category] || '📍') + '</div>',
-          anchor: new naver.maps.Point(15, 15)
-        }
-      });
+      var color = CAT_COLORS[spot.category] || '#666';
+      var icon = CAT_ICONS[spot.category] || '📍';
+      var marker = p.addMarker(state.map, spot.lat, spot.lng, color, icon);
 
       var thumbHtml = spot.coverImage
         ? '<img src="' + escapeAttr(spot.coverImage) + '" style="width:100%;height:100px;object-fit:cover;border-radius:8px 8px 0 0;">'
         : '';
 
-      var infoWindow = new naver.maps.InfoWindow({
-        content: '<div style="width:220px;background:white;border-radius:8px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.15);cursor:pointer;" class="ta-info-window" data-id="' + spot.id + '">' +
+      var infoWindow = p.createInfoWindow(
+        '<div style="width:220px;background:white;border-radius:8px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.15);cursor:pointer;" class="ta-info-window" data-id="' + spot.id + '">' +
           thumbHtml +
           '<div style="padding:10px 12px;">' +
             '<div style="font-weight:600;font-size:0.9rem;color:#1F2937;">' + escapeHtml(spot.name) + '</div>' +
             '<div style="font-size:0.78rem;color:#9CA3AF;margin-top:4px;">' + escapeHtml(spot.region || '') + '</div>' +
           '</div>' +
-        '</div>',
-        borderWidth: 0,
-        backgroundColor: 'transparent',
-        anchorSize: new naver.maps.Size(0, 0),
-        pixelOffset: new naver.maps.Point(0, -20)
-      });
+        '</div>'
+      );
 
-      naver.maps.Event.addListener(marker, 'click', function() {
-        state.infoWindows.forEach(function(iw) { iw.close(); });
-        infoWindow.open(state.map, marker);
+      p.onMarkerClick(marker, function() {
+        state.infoWindows.forEach(function(iw) { p.closeInfoWindow(iw); });
+        p.openInfoWindow(infoWindow, state.map, marker);
         showDetail(spot);
       });
 
@@ -492,25 +684,25 @@
 
     // Fit bounds if we have markers
     if (hasValidCoords && spots.length > 1) {
-      state.map.fitBounds(bounds, { top: 50, right: 50, bottom: 50, left: 50 });
+      p.fitBounds(state.map, spots);
     }
   }
 
   function highlightMarker(spot) {
     if (!state.map || !spot.lat || !spot.lng) return;
+    var p = mp();
 
-    state.infoWindows.forEach(function(iw) { iw.close(); });
+    state.infoWindows.forEach(function(iw) { p.closeInfoWindow(iw); });
 
-    var pos = new naver.maps.LatLng(spot.lat, spot.lng);
-    state.map.panTo(pos);
-    if (state.map.getZoom() < 13) {
-      state.map.setZoom(14);
+    p.panTo(state.map, spot.lat, spot.lng);
+    if (p.getZoom(state.map) < 13) {
+      p.setZoom(state.map, 14);
     }
 
     // Open info window for this spot
     for (var i = 0; i < state.markers.length; i++) {
       if (state.markers[i]._spotId === spot.id) {
-        state.infoWindows[i].open(state.map, state.markers[i]);
+        p.openInfoWindow(state.infoWindows[i], state.map, state.markers[i]);
         break;
       }
     }
@@ -550,12 +742,11 @@
     };
 
     // Try geocode address before submitting
-    if (address && typeof naver !== 'undefined' && naver.maps && naver.maps.Service) {
-      naver.maps.Service.geocode({ query: address }, function(status, response) {
-        if (status === naver.maps.Service.Status.OK && response.v2.addresses.length) {
-          var item = response.v2.addresses[0];
-          body.lat = item.y;
-          body.lng = item.x;
+    if (address) {
+      mp().geocode(address, function(result) {
+        if (result) {
+          body.lat = result.lat;
+          body.lng = result.lng;
         }
         submitToApi(body);
       });
@@ -644,6 +835,13 @@
     if (!str) return '';
     return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
+
+  // Expose triggerResize for sidebar toggle
+  window._taTriggerResize = function() {
+    if (state.map && state.mapLoaded) {
+      mp().triggerResize(state.map);
+    }
+  };
 
   // === Init ===
   function init() {

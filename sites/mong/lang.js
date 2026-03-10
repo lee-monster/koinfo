@@ -1137,9 +1137,6 @@ const translations = {
     "travel.reject": "Татгалзах",
     "travel.noPending": "Хүлээж буй нийтлэл байхгүй.",
     "travel.openMap": "Naver Map-д нээх",
-    "travel.mapNaver": "Naver Map",
-    "travel.mapGoogle": "Google Map",
-    "travel.openMapGoogle": "Google Map-д нээх",
     "travel.koBanner": "✈️ <strong>travel-ko</strong> дээрээс илүү дэлгэрэнгүй аялалын мэдээлэл аваарай!",
 
     // SEO
@@ -2207,9 +2204,6 @@ const translations = {
     "travel.reject": "거절",
     "travel.noPending": "대기 중인 게시물이 없습니다.",
     "travel.openMap": "네이버 지도에서 열기",
-    "travel.mapNaver": "네이버 지도",
-    "travel.mapGoogle": "구글 지도",
-    "travel.openMapGoogle": "구글 지도에서 열기",
     "travel.koBanner": "✈️ <strong>travel-ko</strong> 에서 보다 자세한 여행 정보를 알아보세요!",
 
     // SEO

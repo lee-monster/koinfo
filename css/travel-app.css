@@ -257,6 +257,29 @@ body {
 .ta-map-lang-btn:hover { background: var(--t-gray-100); }
 .ta-map-lang-btn.active { background: var(--t-primary); color: var(--t-white); }
 
+/* Map provider toggle */
+.ta-map-provider {
+  display: flex; gap: 2px; margin: 10px 0 0 10px;
+  background: var(--t-white); border-radius: 4px; overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+.ta-map-provider-btn {
+  padding: 5px 12px; border: none; background: var(--t-white);
+  font-size: 0.72rem; font-weight: 600; color: var(--t-gray-600);
+  cursor: pointer; transition: all var(--t-transition);
+}
+.ta-map-provider-btn:hover { background: var(--t-gray-100); }
+.ta-map-provider-btn.active { background: var(--t-primary); color: var(--t-white); }
+
+/* Google Map detail button */
+.ta-detail-google {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 20px; background: #4285F4; color: white;
+  border-radius: var(--t-radius-sm); font-weight: 600; font-size: 0.88rem;
+  text-decoration: none; transition: background var(--t-transition);
+}
+.ta-detail-google:hover { background: #3367D6; text-decoration: none; color: white; }
+
 /* FAB - Share button */
 .ta-fab {
   position: fixed; bottom: 24px; right: 24px; z-index: 50;

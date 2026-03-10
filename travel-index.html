@@ -170,9 +170,7 @@
       layout.classList.toggle('sidebar-collapsed');
       // Trigger map resize after transition
       setTimeout(function() {
-        if (window.naver && naver.maps && window._taMap) {
-          naver.maps.Event.trigger(window._taMap, 'resize');
-        }
+        if (window._taTriggerResize) window._taTriggerResize();
       }, 350);
     };
 
