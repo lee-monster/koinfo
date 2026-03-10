@@ -132,8 +132,13 @@
           center: { lat: 37.5665, lng: 126.978 },
           zoom: 7,
           mapTypeControl: true,
-          mapTypeControlOptions: { position: google.maps.ControlPosition.TOP_RIGHT },
-          zoomControl: true
+          mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+            position: google.maps.ControlPosition.TOP_RIGHT
+          },
+          zoomControl: true,
+          streetViewControl: false,
+          fullscreenControl: false
         });
       },
       _svgIcon: function(color, icon) {
