@@ -414,7 +414,12 @@ img { max-width: 100%; }
 .travel-ko-banner-text strong { font-weight: 800; }
 .travel-ko-banner-arrow { font-size: 1.2rem; font-weight: 700; transition: transform 0.2s ease; }
 .travel-ko-banner:hover .travel-ko-banner-arrow { transform: translateX(4px); }
-.travel-map-section { margin-top: 0; }
+.travel-map-section { margin-top: 0; position: relative; }
+.travel-map-provider-toggle { position: absolute; top: 10px; left: 10px; z-index: 10; display: flex; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); }
+.travel-map-provider-btn { padding: 6px 14px; font-size: 0.78rem; font-weight: 600; border: 1px solid var(--gray-200); background: var(--white); color: var(--gray-700); cursor: pointer; transition: all var(--transition); }
+.travel-map-provider-btn:first-child { border-right: none; border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+.travel-map-provider-btn:last-child { border-left: none; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.travel-map-provider-btn.active { background: var(--primary); color: var(--white); border-color: var(--primary); }
 .travel-map { width: 100%; height: 400px; background: var(--gray-100); }
 .travel-map-fallback { width: 100%; height: 400px; display: flex; align-items: center; justify-content: center; background: var(--gray-100); color: var(--gray-600); }
 .travel-toolbar { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
