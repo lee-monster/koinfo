@@ -132,6 +132,7 @@
           center: { lat: 37.5665, lng: 126.978 },
           zoom: 7,
           mapTypeControl: true,
+          mapTypeControlOptions: { position: google.maps.ControlPosition.TOP_RIGHT },
           zoomControl: true
         });
       },
@@ -234,6 +235,13 @@
     // Re-render detail if open
     if (state.selectedSpot) {
       renderDetail(state.selectedSpot);
+    }
+    // Reload map with new language (preserving center/zoom)
+    if (state.map && state.mapLoaded) {
+      var p = mp();
+      var center = p.getCenter(state.map);
+      var zoom = p.getZoom(state.map);
+      loadAndCreateMap(center, zoom);
     }
   };
 
@@ -482,7 +490,17 @@
   };
 
   // === Map ===
-  var mapLang = localStorage.getItem('travelko_map_lang') || 'ko';
+  // Map language derived from app language
+  function getMapLang() {
+    var lang = state.lang;
+    if (state.mapProvider === 'naver') {
+      // Naver Maps only supports: ko, en, ja, zh
+      var supported = { ko: 'ko', en: 'en' };
+      return supported[lang] || 'en';
+    }
+    // Google Maps supports most languages directly
+    return lang;
+  }
 
   function initMap() {
     fetch('/api/map-config')
@@ -517,7 +535,7 @@
     state.markers = [];
     state.infoWindows = [];
 
-    p.loadSDK(state.mapConfig, mapLang, function(err) {
+    p.loadSDK(state.mapConfig, getMapLang(), function(err) {
       if (err) {
         showMapFallback(t('app.mapError'));
         return;
@@ -545,7 +563,6 @@
     }
 
     // Add controls
-    addMapLangControl();
     addMapProviderToggle();
 
     // Render markers for already-loaded spots
@@ -602,49 +619,6 @@
 
     // Reload map with new provider
     loadAndCreateMap(center, zoom);
-  }
-
-  function addMapLangControl() {
-    // Remove existing
-    var existing = document.querySelector('.ta-map-lang');
-    if (existing) existing.remove();
-
-    var langOptions = [
-      { code: 'ko', label: 'KR' },
-      { code: 'en', label: 'EN' },
-      { code: 'ja', label: 'JP' },
-      { code: 'zh', label: 'CN' }
-    ];
-
-    var html = '<div class="ta-map-lang">';
-    langOptions.forEach(function(opt) {
-      var active = opt.code === mapLang ? ' active' : '';
-      html += '<button class="ta-map-lang-btn' + active + '" data-lang="' + opt.code + '">' + opt.label + '</button>';
-    });
-    html += '</div>';
-
-    var el = document.createElement('div');
-    el.innerHTML = html;
-    var control = el.firstChild;
-
-    control.addEventListener('click', function(e) {
-      var btn = e.target.closest('.ta-map-lang-btn');
-      if (!btn) return;
-      var lang = btn.getAttribute('data-lang');
-      if (lang === mapLang) return;
-
-      var p = mp();
-      var center = p.getCenter(state.map);
-      var zoom = p.getZoom(state.map);
-
-      mapLang = lang;
-      localStorage.setItem('travelko_map_lang', lang);
-
-      loadAndCreateMap(center, zoom);
-    });
-
-    // Append directly to map wrapper (absolute positioned via CSS)
-    document.querySelector('.ta-map-wrap').appendChild(control);
   }
 
   function renderMapMarkers(spots) {
