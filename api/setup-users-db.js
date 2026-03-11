@@ -8,23 +8,34 @@ const { Client } = require('@notionhq/client');
 module.exports = async function handler(req, res) {
   const notion = new Client({ auth: process.env.NOTION_TOKEN_TRAVEL });
 
-  // Use same parent page as travel DB
-  // Find the parent from existing travel DB
   try {
     const travelDb = await notion.databases.retrieve({
       database_id: process.env.NOTION_DB_TRAVEL
     });
 
-    const parentPageId = travelDb.parent.type === 'page_id'
-      ? travelDb.parent.page_id
-      : null;
-
-    if (!parentPageId) {
-      return res.status(400).json({ error: 'Cannot determine parent page. Create DB manually.' });
+    let parent;
+    if (travelDb.parent.type === 'page_id') {
+      parent = { type: 'page_id', page_id: travelDb.parent.page_id };
+    } else if (travelDb.parent.type === 'workspace') {
+      // DB is at workspace root - create a page first, then DB inside it
+      const page = await notion.pages.create({
+        parent: { type: 'workspace', workspace: true },
+        properties: {
+          title: [{ type: 'text', text: { content: 'TravelKo Users' } }]
+        }
+      });
+      parent = { type: 'page_id', page_id: page.id };
+    } else if (travelDb.parent.type === 'block_id') {
+      parent = { type: 'page_id', page_id: travelDb.parent.block_id };
+    } else {
+      return res.status(400).json({
+        error: 'Unknown parent type: ' + travelDb.parent.type,
+        parent: travelDb.parent
+      });
     }
 
     const db = await notion.databases.create({
-      parent: { type: 'page_id', page_id: parentPageId },
+      parent: parent,
       title: [{ type: 'text', text: { content: 'TravelKo Users' } }],
       properties: {
         Name: { title: {} },
