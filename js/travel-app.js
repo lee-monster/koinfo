@@ -284,29 +284,16 @@
   }
 
   function initGoogleSignIn() {
-    if (typeof google === 'undefined' || !google.accounts) {
-      // GIS not loaded yet, retry
+    if (typeof google === 'undefined' || !google.accounts || !window._taGoogleClientId) {
+      // GIS or Client ID not ready yet, retry
       setTimeout(initGoogleSignIn, 500);
       return;
     }
     google.accounts.id.initialize({
-      client_id: window._taGoogleClientId || '',
+      client_id: window._taGoogleClientId,
       callback: handleGoogleCredential,
       auto_select: false
     });
-  }
-
-  // Fetch Google Client ID from server
-  function fetchGoogleClientId() {
-    fetch('/api/map-config')
-      .then(function(res) { return res.json(); })
-      .then(function(data) {
-        if (data.googleClientId) {
-          window._taGoogleClientId = data.googleClientId;
-          initGoogleSignIn();
-        }
-      })
-      .catch(function() {});
   }
 
   window.taGoogleSignIn = function() {
