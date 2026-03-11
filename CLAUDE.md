@@ -57,6 +57,12 @@ KoInfo(koinfo.kr)는 한국에 거주하는 외국인을 위한 다국가 통합
 3. `git log --oneline -5` — 최근 커밋 히스토리 확인
 4. 위 결과를 사용자에게 요약 보고 후, 새 작업 진행
 
+## GPT-5 계열 모델 API 사용 규칙
+OpenAI GPT-5 계열 (gpt-5-nano, gpt-5-mini, gpt-5 등) 사용 시 반드시 준수:
+- **temperature**: 1 고정 (다른 값 사용 불가)
+- **max_tokens 대신 `max_completion_tokens`** 사용
+- model ID 예시: `gpt-5-nano`, `gpt-5-mini`, `gpt-5`
+
 ## Language
 - 사용자와의 소통: 한국어
 - 코드 주석: 영어

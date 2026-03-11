@@ -92,7 +92,7 @@ Create a day-by-day plan that covers all these spots efficiently. Include meals,
           { role: 'user', content: userPrompt }
         ],
         max_completion_tokens: 4096,
-        temperature: 0.7
+        temperature: 1
       })
     });
 
