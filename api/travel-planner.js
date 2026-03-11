@@ -3,6 +3,11 @@ const { getUserFromRequest, setCors } = require('./_lib/auth');
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
+// Increase Vercel function timeout (Hobby: max 60s, Pro: max 300s)
+module.exports.config = {
+  maxDuration: 60
+};
+
 module.exports = async function handler(req, res) {
   setCors(res);
   if (req.method === 'OPTIONS') return res.status(200).end();
@@ -12,7 +17,7 @@ module.exports = async function handler(req, res) {
   if (!user) return res.status(401).json({ error: 'Unauthorized' });
 
   if (!OPENAI_API_KEY) {
-    return res.status(500).json({ error: 'AI planner not configured' });
+    return res.status(500).json({ error: 'AI planner not configured - missing OPENAI_API_KEY' });
   }
 
   const { spots, days, budget, style, lang } = req.body;
@@ -21,7 +26,6 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Missing required fields: spots, days' });
   }
 
-  // Build spot descriptions for the prompt
   const spotDescriptions = spots.map(function(s, i) {
     return (i + 1) + '. ' + s.name +
       (s.category ? ' [' + s.category + ']' : '') +
@@ -95,8 +99,11 @@ Create a day-by-day plan that covers all these spots efficiently. Include meals,
     const data = await response.json();
 
     if (!response.ok) {
-      console.error('OpenAI error:', data);
-      return res.status(502).json({ error: 'AI service error' });
+      console.error('OpenAI error:', JSON.stringify(data));
+      return res.status(502).json({
+        error: 'AI service error',
+        detail: data.error ? data.error.message : JSON.stringify(data)
+      });
     }
 
     const plan = data.choices[0].message.content;
@@ -108,6 +115,6 @@ Create a day-by-day plan that covers all these spots efficiently. Include meals,
     });
   } catch (err) {
     console.error('Planner error:', err);
-    return res.status(500).json({ error: 'Failed to generate travel plan' });
+    return res.status(500).json({ error: 'Failed to generate travel plan', detail: err.message });
   }
 };

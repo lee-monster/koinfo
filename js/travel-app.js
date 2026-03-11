@@ -1219,11 +1219,14 @@
         document.getElementById('ta-planner-loading-view').style.display = 'none';
         document.getElementById('ta-planner-result-view').style.display = '';
       } else {
-        showToast(t('planner.error'));
+        var errMsg = data.detail || data.error || t('planner.error');
+        console.error('Planner error:', errMsg);
+        showToast(t('planner.error') + ' - ' + errMsg);
         taPlannerBackToForm();
       }
     })
-    .catch(function() {
+    .catch(function(err) {
+      console.error('Planner fetch error:', err);
       showToast(t('planner.error'));
       taPlannerBackToForm();
     });
