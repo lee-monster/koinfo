@@ -337,6 +337,194 @@ body {
 }
 .ta-btn-secondary:hover { border-color: var(--t-gray-600); }
 
+/* === Auth === */
+.ta-auth { position: relative; }
+.ta-auth-login {
+  padding: 5px 12px; border: 1px solid var(--t-primary); border-radius: var(--t-radius-sm);
+  background: var(--t-white); color: var(--t-primary); font-size: 0.78rem; font-weight: 600;
+  cursor: pointer; transition: all var(--t-transition); white-space: nowrap;
+}
+.ta-auth-login:hover { background: var(--t-primary-bg); }
+.ta-auth-profile {
+  position: relative; cursor: pointer;
+}
+.ta-auth-avatar {
+  width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--t-gray-200);
+  object-fit: cover; transition: border-color var(--t-transition);
+}
+.ta-auth-avatar:hover { border-color: var(--t-primary); }
+.ta-auth-menu {
+  display: none; position: absolute; top: 38px; right: 0; z-index: 300;
+  background: var(--t-white); border: 1px solid var(--t-gray-200); border-radius: var(--t-radius-sm);
+  box-shadow: var(--t-shadow-lg); min-width: 160px; padding: 6px 0;
+}
+.ta-auth-profile.open .ta-auth-menu { display: block; }
+.ta-auth-name {
+  padding: 8px 14px; font-size: 0.82rem; font-weight: 600; color: var(--t-gray-800);
+  border-bottom: 1px solid var(--t-gray-100); margin-bottom: 4px;
+}
+.ta-auth-menu button {
+  display: block; width: 100%; padding: 8px 14px; border: none; background: none;
+  text-align: left; font-size: 0.82rem; color: var(--t-gray-700); cursor: pointer;
+  transition: background var(--t-transition);
+}
+.ta-auth-menu button:hover { background: var(--t-gray-50); }
+
+/* === Tabs === */
+.ta-tabs {
+  display: flex; border-bottom: 1px solid var(--t-gray-200); flex-shrink: 0;
+}
+.ta-tab {
+  flex: 1; padding: 10px; border: none; background: none; font-size: 0.82rem;
+  font-weight: 600; color: var(--t-gray-300); cursor: pointer;
+  border-bottom: 2px solid transparent; transition: all var(--t-transition);
+}
+.ta-tab:hover { color: var(--t-gray-600); }
+.ta-tab.active { color: var(--t-primary); border-bottom-color: var(--t-primary); }
+
+/* Tab content */
+.ta-tab-content { display: none; flex: 1; overflow: hidden; flex-direction: column; }
+.ta-tab-content.active { display: flex; }
+
+/* === My Spots === */
+.ta-myspots {
+  flex: 1; overflow-y: auto; padding: 12px;
+}
+.ta-myspots-section { margin-bottom: 16px; }
+.ta-myspots-section h3 {
+  font-size: 0.82rem; font-weight: 700; color: var(--t-gray-600);
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;
+  padding-bottom: 6px; border-bottom: 1px solid var(--t-gray-100);
+}
+.ta-myspots-list { min-height: 40px; }
+.ta-myspots-empty {
+  font-size: 0.82rem; color: var(--t-gray-300); padding: 12px 0;
+}
+.ta-myspot-item {
+  display: flex; align-items: center; gap: 10px; padding: 8px 10px;
+  border: 1px solid var(--t-gray-100); border-radius: var(--t-radius-sm);
+  margin-bottom: 6px; cursor: pointer; transition: all var(--t-transition);
+}
+.ta-myspot-item:hover { border-color: var(--t-primary); background: var(--t-primary-bg); }
+.ta-myspot-icon { font-size: 1.1rem; flex-shrink: 0; }
+.ta-myspot-name { flex: 1; font-size: 0.85rem; font-weight: 500; color: var(--t-gray-800); }
+.ta-myspot-remove {
+  width: 22px; height: 22px; border: none; background: none; color: var(--t-gray-300);
+  cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; transition: all var(--t-transition);
+}
+.ta-myspot-remove:hover { color: #EF4444; background: #FEF2F2; }
+
+/* Planner CTA in My Spots */
+.ta-planner-cta {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 12px; margin-top: 12px;
+  background: linear-gradient(135deg, var(--t-primary), var(--t-primary-dark));
+  color: var(--t-white); border: none; border-radius: var(--t-radius);
+  font-weight: 700; font-size: 0.92rem; cursor: pointer;
+  box-shadow: 0 4px 12px rgba(5,150,105,0.3); transition: all var(--t-transition);
+}
+.ta-planner-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(5,150,105,0.4); }
+
+/* === Detail Bookmark Buttons === */
+.ta-detail-bookmarks {
+  display: flex; gap: 8px; margin-bottom: 12px;
+}
+.ta-bookmark-btn {
+  display: flex; align-items: center; gap: 5px; padding: 6px 14px;
+  border: 1px solid var(--t-gray-200); border-radius: 50px;
+  background: var(--t-white); font-size: 0.78rem; font-weight: 600;
+  cursor: pointer; transition: all var(--t-transition); color: var(--t-gray-600);
+}
+.ta-bookmark-btn:hover { border-color: var(--t-primary); color: var(--t-primary); }
+.ta-bookmark-btn.active-visit {
+  background: #DBEAFE; border-color: #3B82F6; color: #3B82F6;
+}
+.ta-bookmark-btn.active-interested {
+  background: #FEF3C7; border-color: #F59E0B; color: #F59E0B;
+}
+.ta-bookmark-btn svg { width: 14px; height: 14px; }
+
+/* Spot card bookmark indicator */
+.ta-spot-bookmark-badge {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.ta-spot-bookmark-badge.visit { background: #3B82F6; }
+.ta-spot-bookmark-badge.interested { background: #F59E0B; }
+
+/* === Planner Modal === */
+.ta-modal-planner { max-width: 640px; }
+.ta-planner-days {
+  display: flex; align-items: center; gap: 10px;
+}
+.ta-planner-days input[type="range"] {
+  flex: 1; accent-color: var(--t-primary); padding: 0;
+}
+.ta-planner-days span:first-of-type {
+  font-size: 1.1rem; font-weight: 700; color: var(--t-primary); min-width: 24px; text-align: center;
+}
+.ta-planner-options {
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+.ta-option-btn {
+  padding: 6px 14px; border: 1px solid var(--t-gray-200); border-radius: 50px;
+  background: var(--t-white); color: var(--t-gray-600); font-size: 0.82rem;
+  font-weight: 500; cursor: pointer; transition: all var(--t-transition);
+}
+.ta-option-btn:hover { border-color: var(--t-primary); color: var(--t-primary); }
+.ta-option-btn.active { background: var(--t-primary); color: var(--t-white); border-color: var(--t-primary); }
+
+.ta-planner-spots {
+  display: flex; flex-direction: column; gap: 6px; max-height: 200px; overflow-y: auto;
+}
+.ta-planner-spot-item {
+  display: flex; align-items: center; gap: 8px; padding: 6px 10px;
+  border: 1px solid var(--t-gray-100); border-radius: var(--t-radius-sm);
+  font-size: 0.85rem;
+}
+.ta-planner-spot-item input[type="checkbox"] { accent-color: var(--t-primary); }
+.ta-planner-spot-item label { cursor: pointer; flex: 1; }
+
+/* Planner result */
+.ta-planner-result {
+  background: var(--t-gray-50); border: 1px solid var(--t-gray-200);
+  border-radius: var(--t-radius-sm); padding: 20px; margin: 16px 0;
+  font-size: 0.9rem; line-height: 1.8; color: var(--t-gray-800);
+  max-height: 60vh; overflow-y: auto; white-space: pre-wrap;
+}
+.ta-planner-result h1, .ta-planner-result h2, .ta-planner-result h3 {
+  color: var(--t-gray-900); margin: 16px 0 8px;
+}
+.ta-planner-result h1 { font-size: 1.1rem; }
+.ta-planner-result h2 { font-size: 1rem; }
+.ta-planner-result h3 { font-size: 0.95rem; }
+.ta-planner-result strong { color: var(--t-primary-dark); }
+.ta-planner-result ul, .ta-planner-result ol { padding-left: 20px; margin: 8px 0; }
+.ta-planner-result li { margin-bottom: 4px; }
+
+/* Planner loading */
+.ta-planner-loading {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 60px 20px; gap: 16px;
+}
+.ta-spinner {
+  width: 40px; height: 40px; border: 3px solid var(--t-gray-200);
+  border-top-color: var(--t-primary); border-radius: 50%;
+  animation: ta-spin 0.8s linear infinite;
+}
+@keyframes ta-spin { to { transform: rotate(360deg); } }
+.ta-planner-loading p { color: var(--t-gray-600); font-size: 0.92rem; }
+
+/* Toast notification */
+.ta-toast {
+  position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+  padding: 10px 20px; background: var(--t-gray-900); color: var(--t-white);
+  border-radius: 50px; font-size: 0.85rem; font-weight: 500;
+  z-index: 500; opacity: 0; transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.ta-toast.show { opacity: 1; }
+
 /* === Category Colors === */
 .cat-food { background: #FEF2F2; color: #EF4444; }
 .cat-attraction { background: #EFF6FF; color: #3B82F6; }

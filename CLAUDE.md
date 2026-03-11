@@ -50,6 +50,13 @@ KoInfo(koinfo.kr)는 한국에 거주하는 외국인을 위한 다국가 통합
 └── images/               (공용 이미지)
 ```
 
+## Workflow: Session Start Protocol
+새 작업 시작 전, 반드시 아래 순서로 현재 상태를 파악한다:
+1. `git status` — 커밋되지 않은 변경사항/untracked 파일 확인
+2. `git diff` — 진행 중이던 수정 내용 파악
+3. `git log --oneline -5` — 최근 커밋 히스토리 확인
+4. 위 결과를 사용자에게 요약 보고 후, 새 작업 진행
+
 ## Language
 - 사용자와의 소통: 한국어
 - 코드 주석: 영어
