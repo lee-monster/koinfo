@@ -562,7 +562,7 @@
 
     var params = new URLSearchParams();
     params.set('lang', state.lang);
-    params.set('limit', '20');
+    params.set('limit', '100');
     if (state.category !== 'all') params.set('category', state.category);
     if (state.region) params.set('region', state.region);
     if (append && state.nextCursor) params.set('cursor', state.nextCursor);

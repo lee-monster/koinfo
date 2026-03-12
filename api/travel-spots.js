@@ -80,7 +80,7 @@ module.exports = async function handler(req, res) {
 
     const { category, region, lang, limit, cursor, featured } = req.query;
     const notion = getNotion();
-    const pageSize = Math.min(parseInt(limit) || 20, 50);
+    const pageSize = Math.min(parseInt(limit) || 100, 100);
     const language = lang || 'en';
 
     const filter = {
