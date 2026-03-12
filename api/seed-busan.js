@@ -183,7 +183,7 @@ const SPOTS = [
     desc_ko: "용두산공원 위 120m 전망대에서 부산항과 다리의 360도 야경을 감상할 수 있는 부산의 상징. 유리 바닥 엘리베이터로 스릴도 즐겨보세요.",
     desc_id: "Menara ikonik 120m di atas Taman Yongdusan yang menawarkan pemandangan malam 360 derajat pelabuhan dan jembatan Busan. Naik lift lantai kaca untuk sensasi tambahan.",
     desc_mn: "Ёндусан цэцэрлэгт хүрээлэн дээрх 120м өндөр цамхаг. Бусаны боомт, гүүрнүүдийн 360 градусын шөнийн харагдах байдал, шилэн шалтай лифт.",
-    category: "attraction", region: "Nampo-dong", lat: 35.1007, lng: 129.0326,
+    category: "attraction", region: "Nampo-dong", lat: 35.1007, lng: 129.0260,
     address: "부산광역시 중구 용두산길 37-55"
   },
   {
@@ -195,7 +195,7 @@ const SPOTS = [
     desc_ko: "기장 해안가에 K-드라마 촬영을 위해 세워진 아름다운 성당 세트장. 파도가 치는 바다를 배경으로 부산의 가장 포토제닉한 숨은 명소입니다.",
     desc_id: "Set film gereja tepi laut yang indah di Gijang, dibangun untuk K-drama. Kini salah satu hidden gem paling fotogenik di Busan dengan ombak sebagai latar belakang.",
     desc_mn: "K-драмын зураг авалтын зорилгоор Гижаны далайн эрэгт баригдсан гоё сүмийн декор. Далайн давалгааг ар дэвсгэр болгосон Бусаны хамгийн нууцлаг гоё газар.",
-    category: "attraction", region: "Gijang", lat: 35.2279, lng: 129.2412,
+    category: "attraction", region: "Gijang", lat: 35.2412, lng: 129.2479,
     address: "부산광역시 기장군 기장읍 죽성리 134-7"
   },
   // === NATURE (5) ===
@@ -244,7 +244,7 @@ const SPOTS = [
     desc_ko: "영도의 울창한 숲과 해안 절벽이 어우러진 자연공원. 등대, 전망대, 다누비 열차를 타고 바다를 감상하며 산책할 수 있습니다.",
     desc_id: "Taman alam tebing dramatis di Pulau Yeongdo dengan mercusuar, observatorium, dan kereta Danubi melewati hutan lebat dengan pemandangan laut.",
     desc_mn: "Ёндо аралын хадан цохионы байгалийн цэцэрлэгт хүрээлэн. Гэрэлт цамхаг, зурагт, Данүби галт тэрэгний аялал, ой, далайн харагдах байдал.",
-    category: "nature", region: "Yeongdo", lat: 35.0531, lng: 129.0872,
+    category: "nature", region: "Yeongdo", lat: 35.0517, lng: 129.0849,
     address: "부산광역시 영도구 전망로 24"
   },
   {
