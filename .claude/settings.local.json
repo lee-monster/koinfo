@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs ls:*)",
+      "Bash(ls:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "mcp__claude_ai_Notion__notion-fetch",
+      "mcp__claude_ai_Notion__notion-search",
+      "mcp__claude_ai_Notion__notion-create-database",
+      "mcp__claude_ai_Notion__notion-create-pages",
+      "WebFetch(domain:travel.koinfo.kr)",
+      "WebFetch(domain:koinfo.kr)",
+      "Bash(gh api:*)",
+      "Bash(gh.exe api:*)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" api:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(cd /c/Users/User/OneDrive/Agent/8_koinfo && rm travel.html)",
+      "Bash(cd /c/Users/User/OneDrive/Agent/8_koinfo && sed -i 's|href=\"travel\\\\.html\"|href=\"https://travel.koinfo.kr\" target=\"_blank\" rel=\"noopener\"|g' 404.html community.html index.html life.html news.html study.html visa.html work.html)",
+      "WebSearch",
+      "WebFetch(domain:platform.openai.com)",
+      "WebFetch(domain:openai.com)",
+      "WebFetch(domain:developers.openai.com)",
+      "WebFetch(domain:openrouter.ai)"
+    ]
+  }
+}
