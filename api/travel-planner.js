@@ -3,11 +3,6 @@ const { getUserFromRequest, setCors } = require('./_lib/auth');
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
-// Increase Vercel function timeout (Hobby: max 60s, Pro: max 300s)
-module.exports.config = {
-  maxDuration: 60
-};
-
 module.exports = async function handler(req, res) {
   setCors(res);
   if (req.method === 'OPTIONS') return res.status(200).end();
@@ -117,4 +112,9 @@ Create a day-by-day plan that covers all these spots efficiently. Include meals,
     console.error('Planner error:', err);
     return res.status(500).json({ error: 'Failed to generate travel plan', detail: err.message });
   }
+};
+
+// Increase Vercel function timeout (Hobby: max 60s, Pro: max 300s)
+module.exports.config = {
+  maxDuration: 60
 };

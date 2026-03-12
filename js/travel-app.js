@@ -1212,7 +1212,16 @@
         lang: state.lang
       })
     })
-    .then(function(res) { return res.json(); })
+    .then(function(res) {
+      if (!res.ok) {
+        return res.text().then(function(text) {
+          try { return JSON.parse(text); } catch(e) {
+            return { error: 'Server error (' + res.status + ')' };
+          }
+        });
+      }
+      return res.json();
+    })
     .then(function(data) {
       if (data.success && data.plan) {
         document.getElementById('ta-planner-result').innerHTML = renderMarkdown(data.plan);
