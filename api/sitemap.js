@@ -10,7 +10,7 @@ module.exports = function handler(req, res) {
   if (host.startsWith('travel.')) {
     // Travel site: SPA with virtual category/region routes for SEO
     var categories = ['food', 'attraction', 'cafe', 'nature', 'shopping', 'nightlife'];
-    var regions = ['Seoul', 'Busan', 'Jeju', 'Incheon', 'Gyeonggi'];
+    var regions = ['Seoul', 'Busan', 'Jeju', 'Incheon', 'Gyeonggi', 'Gangneung', 'Sokcho', 'Jeonju', 'Gyeongju', 'Yeosu', 'Daegu', 'Suwon'];
     urls = [
       { loc: baseUrl + '/', priority: '1.0', changefreq: 'daily' },
     ];
