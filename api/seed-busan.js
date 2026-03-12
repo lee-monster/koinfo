@@ -147,7 +147,7 @@ const SPOTS = [
     desc_ko: "미포에서 청사포까지 해안 레일 위를 달리는 알록달록 캡슐 열차. 에메랄드빛 바다 위를 지나는 모습이 틱톡, 인스타 릴스에서 가장 바이럴된 부산 명소입니다.",
     desc_id: "Kereta kapsul berwarna-warni yang meluncur di atas rel pantai di atas air pirus dari Mipo ke Cheongsapo. Atraksi Busan paling viral di TikTok dan Instagram Reels.",
     desc_mn: "Мипогоос Чёнсапо хүртэл эргийн төмөр зам дээгүүр гулсдаг өнгөлөг капсул галт тэрэг. TikTok, Instagram Reels дээр хамгийн их вайрал болсон Бусаны газар.",
-    category: "attraction", region: "Haeundae", lat: 35.1631, lng: 129.1745,
+    category: "attraction", region: "Haeundae", lat: 35.1583, lng: 129.1728,
     address: "부산광역시 해운대구 달맞이길62번길 13", featured: true
   },
   {

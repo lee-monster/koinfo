@@ -15,6 +15,8 @@
   <meta property="og:locale:alternate" content="ko_KR">
   <meta property="og:locale:alternate" content="id_ID">
   <meta property="og:locale:alternate" content="mn_MN">
+  <meta property="og:locale:alternate" content="ms_MY">
+  <meta property="og:locale:alternate" content="vi_VN">
   <meta property="og:site_name" content="TravelKo">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="TravelKo - Discover Korea">
@@ -25,7 +27,65 @@
   <link rel="alternate" hreflang="ko" href="https://travel.koinfo.kr/">
   <link rel="alternate" hreflang="id" href="https://travel.koinfo.kr/">
   <link rel="alternate" hreflang="mn" href="https://travel.koinfo.kr/">
+  <link rel="alternate" hreflang="ms" href="https://travel.koinfo.kr/">
+  <link rel="alternate" hreflang="vi" href="https://travel.koinfo.kr/">
   <link rel="alternate" hreflang="x-default" href="https://travel.koinfo.kr/">
+  <!-- GEO tags for Korea-focused travel service -->
+  <meta name="geo.region" content="KR">
+  <meta name="geo.placename" content="South Korea">
+  <meta name="geo.position" content="37.5665;126.9780">
+  <meta name="ICBM" content="37.5665, 126.9780">
+  <!-- Additional SEO -->
+  <meta name="keywords" content="Korea travel, Korean restaurants, Seoul cafes, Busan attractions, Korea tourism, K-food, Korean culture, travel guide Korea, foreigner Korea, 한국 여행, 외국인 한국 관광">
+  <meta name="author" content="TravelKo by KoInfo">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://travel.koinfo.kr/#website",
+        "url": "https://travel.koinfo.kr/",
+        "name": "TravelKo",
+        "description": "Discover the best travel spots in Korea recommended by the community",
+        "publisher": { "@id": "https://travel.koinfo.kr/#organization" },
+        "inLanguage": ["en", "ko", "id", "mn", "ms", "vi"],
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://travel.koinfo.kr/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "TravelAgency",
+        "@id": "https://travel.koinfo.kr/#organization",
+        "name": "TravelKo",
+        "url": "https://travel.koinfo.kr/",
+        "logo": "https://travel.koinfo.kr/images/og-travel.png",
+        "description": "Community-driven Korea travel guide for foreigners living in or visiting South Korea",
+        "areaServed": {
+          "@type": "Country",
+          "name": "South Korea",
+          "sameAs": "https://en.wikipedia.org/wiki/South_Korea"
+        },
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "Foreign tourists and residents in South Korea"
+        },
+        "sameAs": ["https://koinfo.kr"]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "KoInfo", "item": "https://koinfo.kr/" },
+          { "@type": "ListItem", "position": 2, "name": "TravelKo", "item": "https://travel.koinfo.kr/" }
+        ]
+      }
+    ]
+  }
+  </script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23059669'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Arial,sans-serif' font-weight='800' font-size='22' fill='%23FFFFFF'%3ET%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="css/travel-app.css">
   <script src="https://accounts.google.com/gsi/client" async defer></script>

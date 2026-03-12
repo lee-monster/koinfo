@@ -22,7 +22,10 @@
       "WebFetch(domain:platform.openai.com)",
       "WebFetch(domain:openai.com)",
       "WebFetch(domain:developers.openai.com)",
-      "WebFetch(domain:openrouter.ai)"
+      "WebFetch(domain:openrouter.ai)",
+      "WebFetch(domain:www.google.com)",
+      "WebFetch(domain:latitude.to)",
+      "WebFetch(domain:www.koreatriptips.com)"
     ]
   }
 }
