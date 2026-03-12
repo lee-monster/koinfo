@@ -73,7 +73,7 @@ const SPOTS = [
     desc_ko: "광안리 해변 10층 규모의 회센터. 1층에서 싱싱한 회를 사서 민락수변공원에서 광안대교를 보며 피크닉처럼 즐기는 부산 스타일의 명소입니다.",
     desc_id: "Pusat ikan mentah 10 lantai di Pantai Gwangalli tempat warga lokal membeli sashimi segar di bawah dan menikmatinya gaya piknik di taman tepi air dengan pemandangan Jembatan Diamond.",
     desc_mn: "Гвананли далайн эрэг дээрх 10 давхар түүхий загасны төв. Шинэхэн сашимиг доороос нь авч, Алмазан гүүрний харагдах усны хөвөөний цэцэрлэгт зугаалж болно.",
-    category: "food", region: "Gwangalli", lat: 35.1548, lng: 129.1248,
+    category: "food", region: "Gwangalli", lat: 35.1542, lng: 129.1279,
     address: "부산광역시 수영구 민락수변로 1"
   },
   // === CAFE (4) ===
@@ -135,7 +135,7 @@ const SPOTS = [
     desc_ko: "'부산의 마추픽추'로 불리는 알록달록 벽화마을. 다채로운 집들, 벽화, 예술 설치물이 어우러져 한국에서 가장 인스타그래머블한 명소 중 하나입니다.",
     desc_id: "'Machu Picchu Busan' — desa di lereng bukit dengan rumah-rumah berwarna-warni, mural, dan instalasi seni. Salah satu spot paling banyak di-Instagram di Korea Selatan.",
     desc_mn: "'Бусаны Мачу Пикчу' — өнгөлөг байшин, ханын зураг, урлагийн бүтээлүүдтэй толгодын тосгон. Өмнөд Солонгосын Инстаграмд хамгийн их гарсан газруудын нэг.",
-    category: "attraction", region: "Gamcheon", lat: 35.0963, lng: 129.0088,
+    category: "attraction", region: "Gamcheon", lat: 35.0974, lng: 129.0106,
     address: "부산광역시 사하구 감내2로 203", featured: true
   },
   {
@@ -171,7 +171,7 @@ const SPOTS = [
     desc_ko: "'부산의 산토리니'로 불리는 영도 절벽 위 조용한 마을. 바다를 향한 카페, 예술 작품, 해안 파노라마가 감천보다 한적하면서도 아름답습니다.",
     desc_id: "'Santorini Busan' — desa tebing tenang di Yeongdo dengan kafe menghadap laut, instalasi seni, dan panorama laut. Jauh lebih sepi dari Gamcheon tapi sama indahnya.",
     desc_mn: "'Бусаны Санторини' — Ёндо дахь далайн хадан дээрх тайван тосгон. Далайн харагдах кафе, урлагийн бүтээлүүд, Гамчёноос бага хүнтэй ч мөн адил гоё.",
-    category: "attraction", region: "Yeongdo", lat: 35.0785, lng: 129.0413,
+    category: "attraction", region: "Yeongdo", lat: 35.0773, lng: 129.0464,
     address: "부산광역시 영도구 영선동4가 1044-6"
   },
   {
@@ -232,7 +232,7 @@ const SPOTS = [
     desc_ko: "바다 위 37m 높이의 무료 유리 바닥 스카이워크. 발 아래로 바다가 보이며, 이기대 해안산책로와 함께 코스로 돌기 좋습니다.",
     desc_id: "Skywalk lantai kaca gratis 37m di atas laut di mana Anda bisa melihat lautan di bawah kaki. Cocok dipadukan dengan Jalur Pantai Igidae yang menakjubkan.",
     desc_mn: "Далайн түвшнээс 37м өндөрт байрлах үнэгүй шилэн шалтай скайволк. Хөлийн доогуур далай харагдана. Игидэ эргийн зүүн замтай хослуулан алхаарай.",
-    category: "nature", region: "Igidae", lat: 35.1010, lng: 129.1235,
+    category: "nature", region: "Igidae", lat: 35.1023, lng: 129.1229,
     address: "부산광역시 남구 오륙도로 137"
   },
   {
@@ -244,7 +244,7 @@ const SPOTS = [
     desc_ko: "영도의 울창한 숲과 해안 절벽이 어우러진 자연공원. 등대, 전망대, 다누비 열차를 타고 바다를 감상하며 산책할 수 있습니다.",
     desc_id: "Taman alam tebing dramatis di Pulau Yeongdo dengan mercusuar, observatorium, dan kereta Danubi melewati hutan lebat dengan pemandangan laut.",
     desc_mn: "Ёндо аралын хадан цохионы байгалийн цэцэрлэгт хүрээлэн. Гэрэлт цамхаг, зурагт, Данүби галт тэрэгний аялал, ой, далайн харагдах байдал.",
-    category: "nature", region: "Yeongdo", lat: 35.0586, lng: 129.0869,
+    category: "nature", region: "Yeongdo", lat: 35.0531, lng: 129.0872,
     address: "부산광역시 영도구 전망로 24"
   },
   {
@@ -269,7 +269,7 @@ const SPOTS = [
     desc_ko: "기네스북 등재 세계 최대 백화점. 아이스링크, 옥상정원, 스파랜드 찜질방, 영화관 등 16개 층 700여 매장이 입점한 부산의 쇼핑 랜드마크입니다.",
     desc_id: "Pemegang Rekor Dunia Guinness untuk department store terbesar di dunia. Ada arena es, taman atap, spa jjimjilbang, bioskop, dan 700+ toko di 16 lantai.",
     desc_mn: "Дэлхийн хамгийн том дэлгүүрийн Гиннесийн рекордтой. Мөсөн тальбай, дээврийн цэцэрлэг, жжимжилбан спа, кино театр, 16 давхарт 700+ дэлгүүр.",
-    category: "shopping", region: "Centum City", lat: 35.1691, lng: 129.1316,
+    category: "shopping", region: "Centum City", lat: 35.1686, lng: 129.1291,
     address: "부산광역시 해운대구 센텀남대로 35"
   },
   {
@@ -281,7 +281,7 @@ const SPOTS = [
     desc_ko: "부산 최대 전통시장과 BIFF 영화제 거리가 연결된 명소. 씨앗호떡, 패션, 화장품, 기념품 쇼핑을 한 곳에서 즐길 수 있습니다.",
     desc_id: "Pasar tradisional terbesar Busan yang terhubung dengan jalan festival film BIFF yang terkenal. Coba hotteok (pancake manis), belanja fashion, kosmetik, dan suvenir lokal.",
     desc_mn: "Бусаны хамгийн том уламжлалт зах BIFF кино наадмын гудамжтай холбогдсон. Хотток (амттай бин), загвар, гоо сайхан, дурсгалын зүйлс.",
-    category: "shopping", region: "Nampo-dong", lat: 35.1011, lng: 129.0282,
+    category: "shopping", region: "Nampo-dong", lat: 35.1045, lng: 129.0244,
     address: "부산광역시 중구 국제시장2길 25"
   },
   {
