@@ -233,10 +233,8 @@
     localStorage.setItem('travelko_lang', lang);
     document.getElementById('ta-lang-select').value = lang;
     applyTranslations();
-    renderSpotList();
-    if (state.selectedSpot) {
-      renderDetail(state.selectedSpot);
-    }
+    // Re-fetch spots in the new language from API
+    fetchSpots(false);
     renderMySpots();
     if (state.map && state.mapLoaded) {
       var p = mp();
