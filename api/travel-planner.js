@@ -1,7 +1,7 @@
-// POST /api/travel-planner - AI Travel Planner using GPT-5-NANO
+// POST /api/travel-planner - AI Travel Planner using Gemini 2.0 Flash with Google Search Grounding
 const { getUserFromRequest, setCors } = require('./_lib/auth');
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 module.exports = async function handler(req, res) {
   setCors(res);
@@ -11,8 +11,8 @@ module.exports = async function handler(req, res) {
   const user = getUserFromRequest(req);
   if (!user) return res.status(401).json({ error: 'Unauthorized' });
 
-  if (!OPENAI_API_KEY) {
-    return res.status(500).json({ error: 'AI planner not configured - missing OPENAI_API_KEY' });
+  if (!GEMINI_API_KEY) {
+    return res.status(500).json({ error: 'AI planner not configured - missing GEMINI_API_KEY' });
   }
 
   const { spots, days, budget, style, lang } = req.body;
@@ -49,11 +49,12 @@ module.exports = async function handler(req, res) {
 
   const systemPrompt = `You are TravelKo's AI Travel Planner — an expert on traveling in Korea.
 Create a detailed, practical day-by-day travel itinerary based on the user's selected spots and preferences.
+Use Google Search to find the latest information about each spot (opening hours, prices, seasonal events, nearby restaurants).
 
 Rules:
 - Organize spots logically by proximity and region to minimize travel time
 - Include estimated time at each spot (e.g., "1-2 hours")
-- Suggest specific meal recommendations near each area with price ranges
+- Suggest specific meal recommendations near each area with current price ranges
 - Add transportation tips between spots (subway, bus, taxi with estimated cost)
 - Include morning/afternoon/evening time blocks
 - Match the travel pace to the user's style preference
@@ -74,39 +75,55 @@ ${spotDescriptions}
 Create a day-by-day plan that covers all these spots efficiently. Include meals, transport, and time estimates.`;
 
   try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_API_KEY;
+
+    const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + OPENAI_API_KEY
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'gpt-5-nano',
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: userPrompt }
+        systemInstruction: {
+          parts: [{ text: systemPrompt }]
+        },
+        contents: [
+          { role: 'user', parts: [{ text: userPrompt }] }
         ],
-        max_completion_tokens: 4096,
-        temperature: 1
+        tools: [{ google_search: {} }],
+        generationConfig: {
+          temperature: 1.0,
+          maxOutputTokens: 4096
+        }
       })
     });
 
     const data = await response.json();
 
     if (!response.ok) {
-      console.error('OpenAI error:', JSON.stringify(data));
+      console.error('Gemini error:', JSON.stringify(data));
       return res.status(502).json({
         error: 'AI service error',
         detail: data.error ? data.error.message : JSON.stringify(data)
       });
     }
 
-    const plan = data.choices[0].message.content;
+    const candidate = data.candidates && data.candidates[0];
+    if (!candidate || !candidate.content || !candidate.content.parts) {
+      console.error('Gemini unexpected response:', JSON.stringify(data));
+      return res.status(502).json({
+        error: 'AI service returned empty response',
+        detail: candidate && candidate.finishReason ? 'Finish reason: ' + candidate.finishReason : 'No candidates'
+      });
+    }
+
+    // Extract text from all parts
+    const plan = candidate.content.parts
+      .filter(function(p) { return p.text; })
+      .map(function(p) { return p.text; })
+      .join('');
 
     return res.status(200).json({
       success: true,
       plan: plan,
-      usage: data.usage
+      usage: data.usageMetadata
     });
   } catch (err) {
     console.error('Planner error:', err);
