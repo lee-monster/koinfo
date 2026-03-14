@@ -7,4 +7,3 @@ Disallow: /.claude/
 Sitemap: https://koinfo.kr/sitemap.xml
 Sitemap: https://indo.koinfo.kr/sitemap.xml
 Sitemap: https://mong.koinfo.kr/sitemap.xml
-Sitemap: https://travel.koinfo.kr/sitemap.xml
