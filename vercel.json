@@ -1,7 +1,9 @@
 {
   "rewrites": [
+    { "source": "/sitemap.xml", "destination": "/api/sitemap" },
     { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/sitemap.xml", "destination": "/api/sitemap" }
+    { "source": "/(study|work|visa|life|news|community).html", "destination": "/api/page?page=$1" },
+    { "source": "/", "destination": "/api/page?page=index" }
   ],
   "headers": [
     {
@@ -10,5 +12,10 @@
         { "key": "Cache-Control", "value": "s-maxage=60, stale-while-revalidate=300" }
       ]
     }
-  ]
+  ],
+  "functions": {
+    "api/page.js": {
+      "includeFiles": "{index,study,work,visa,life,news,community,landing}.html"
+    }
+  }
 }
