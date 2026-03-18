@@ -8,12 +8,14 @@ KoInfo(koinfo.kr)는 한국에 거주하는 외국인을 위한 다국가 통합
 - **Single codebase, multi-site**: 하나의 HTML/CSS/JS 코드베이스를 공유하며, `js/site-config.js`의 SITES 설정과 `sites/{국가}/lang.js` 번역 파일로 국가별 차이를 구현
 - **국가별 리소스**: `sites/{국가코드}/` 폴더에 hero 이미지, 번역(lang.js) 보관
 - **공용 코드**: `js/`, `css/`, `api/`, 루트 HTML 파일들은 모든 국가가 공유
+- **TravelKo 분리**: travel.koinfo.kr은 별도 레포(lee-monster/travel-planner)로 관리
 
 ## Active Sites
 | 코드 | 사이트명 | 대상국가 | 도메인 |
 |------|---------|---------|--------|
 | mong | MongKo (몽코) | 몽골 | mong.koinfo.kr |
 | indo | IndoKo (인도코) | 인도네시아 | indo.koinfo.kr |
+| viet | VietKo (비엣코) | 베트남 | viet.koinfo.kr |
 | malay | MalayKo (말코) | 말레이시아 | malay.koinfo.kr (준비중) |
 
 ## Critical Rule: Multi-Country Consistency
@@ -32,7 +34,7 @@ KoInfo(koinfo.kr)는 한국에 거주하는 외국인을 위한 다국가 통합
 
 ## File Structure
 ```
-├── index.html, study.html, work.html, visa.html, life.html, travel.html, community.html, news.html  (공용 페이지)
+├── index.html, study.html, work.html, visa.html, life.html, community.html, news.html  (공용 페이지)
 ├── business.html          (비활성 - 네비게이션에서 제거됨)
 ├── landing.html          (koinfo.kr 메인 랜딩)
 ├── css/style.css         (공용 스타일)
@@ -40,13 +42,15 @@ KoInfo(koinfo.kr)는 한국에 거주하는 외국인을 위한 다국가 통합
 │   ├── site-config.js    (국가별 설정 - SITES 객체)
 │   ├── main.js           (공용 JS - i18n, 테마 등)
 │   ├── news.js           (뉴스 기능)
-│   ├── board.js          (게시판 기능)
-│   └── travel.js         (여행 기능 - 네이버맵, 사용자 게시, 관리자 승인)
+│   └── board.js          (게시판 기능)
 ├── sites/
 │   ├── mong/lang.js      (몽골어/한국어 번역)
 │   ├── indo/lang.js      (인도네시아어/한국어 번역)
+│   ├── viet/lang.js      (베트남어/한국어 번역)
 │   └── {국가}/images/    (국가별 히어로 이미지)
-├── api/                  (Vercel serverless functions)
+├── api/
+│   ├── news.js           (뉴스 API)
+│   └── sitemap.js        (동적 sitemap)
 └── images/               (공용 이미지)
 ```
 
@@ -56,11 +60,6 @@ KoInfo(koinfo.kr)는 한국에 거주하는 외국인을 위한 다국가 통합
 2. `git diff` — 진행 중이던 수정 내용 파악
 3. `git log --oneline -5` — 최근 커밋 히스토리 확인
 4. 위 결과를 사용자에게 요약 보고 후, 새 작업 진행
-
-## AI Travel Planner (Gemini)
-- **모델**: Gemini 2.0 Flash (Google Search Grounding 활성)
-- **API**: Google Generative Language API (`generativelanguage.googleapis.com/v1beta`)
-- **환경변수**: `GEMINI_API_KEY` (Vercel)
 
 ## Language
 - 사용자와의 소통: 한국어

@@ -82,6 +82,46 @@ const SITES = {
       { i18nName: 'footer.office.origin', i18nAddr: 'footer.office.origin.addr' },
     ],
   },
+  viet: {
+    id: 'viet',
+    name: 'VietKo',
+    nameKo: '비엣코',
+    lang: 'vi',
+    langLabel: 'Tiếng Việt',
+    flags: '🇻🇳🇰🇷',
+    flagsSpaced: '🇻🇳 🇰🇷',
+    faviconLetter: 'V',
+    htmlLang: 'vi',
+    ogLocale: 'vi_VN',
+    domain: 'viet.koinfo.kr',
+    adminPassword: 'vietko2026',
+    storagePrefix: 'vietko',
+    notionDbEnv: 'NOTION_DB_VIET',
+    notionTokenEnv: 'NOTION_TOKEN_VIET',
+    colors: {
+      primary: '#DA251D',
+      primaryDark: '#A31B15',
+      primaryLight: '#E85D57',
+      primaryBg: '#FEF2F2',
+      accent: '#FFCD00',
+      accentLight: '#FFF8DC',
+    },
+    heroSlides: 0,
+    heroExtensions: [],
+    stats: [
+      { count: 337183, i18nLabel: 'stats.residentsLabel', i18nSource: 'stats.residentsSource', rank: false },
+      { count: 107807, i18nLabel: 'stats.studentsLabel', i18nSource: 'stats.studentsSource', rank: false },
+      { count: 130000, i18nLabel: 'stats.epsLabel', i18nSource: 'stats.epsSource', rank: false },
+      { count: 2, i18nLabel: 'stats.rankLabel', i18nSource: 'stats.rankSource', rank: true },
+    ],
+    suffixRank: { native: ' lớn nhất', ko: '위' },
+    suffixCount: { native: ' người', ko: '명' },
+    emptyNews: { native: 'Chưa có tin tức.', ko: '소식이 없습니다.' },
+    footerOffices: [
+      { i18nName: 'footer.office.korea', i18nAddr: 'footer.office.korea.addr' },
+      { i18nName: 'footer.office.origin', i18nAddr: 'footer.office.origin.addr' },
+    ],
+  },
   malay: {
     id: 'malay',
     name: 'MalayKo',
@@ -229,7 +269,6 @@ var SEO_PAGES = {
   work:      { titleKey: 'seo.work.title',      descKey: 'seo.work.desc' },
   visa:      { titleKey: 'seo.visa.title',      descKey: 'seo.visa.desc' },
   life:      { titleKey: 'seo.life.title',      descKey: 'seo.life.desc' },
-  travel:    { titleKey: 'seo.travel.title',    descKey: 'seo.travel.desc' },
   news:      { titleKey: 'seo.news.title',      descKey: 'seo.news.desc' },
   community: { titleKey: 'seo.community.title', descKey: 'seo.community.desc' },
 };
@@ -279,6 +318,7 @@ function applySiteSEO(lang) {
   var HREFLANG_MAP = {
     indo: { lang: 'id', domain: 'indo.koinfo.kr' },
     mong: { lang: 'mn', domain: 'mong.koinfo.kr' },
+    viet: { lang: 'vi', domain: 'viet.koinfo.kr' },
   };
   var pagePath = pageId === 'index' ? '/' : '/' + pageId + '.html';
 

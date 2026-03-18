@@ -14,8 +14,8 @@ module.exports = function handler(req, res) {
     ];
   } else {
     // Country sites (indo, mong, etc.)
-    var pages = ['', 'study.html', 'work.html', 'visa.html', 'life.html', 'travel.html', 'news.html', 'community.html'];
-    var priorities = ['1.0', '0.8', '0.8', '0.8', '0.8', '0.7', '0.7', '0.6'];
+    var pages = ['', 'study.html', 'work.html', 'visa.html', 'life.html', 'news.html', 'community.html'];
+    var priorities = ['1.0', '0.8', '0.8', '0.8', '0.8', '0.7', '0.6'];
 
     pages.forEach(function(page, i) {
       urls.push({
@@ -29,6 +29,7 @@ module.exports = function handler(req, res) {
     var alternates = [
       { hreflang: 'id', href: 'https://indo.koinfo.kr/' },
       { hreflang: 'mn', href: 'https://mong.koinfo.kr/' },
+      { hreflang: 'vi', href: 'https://viet.koinfo.kr/' },
       { hreflang: 'x-default', href: 'https://koinfo.kr/' },
     ];
 
