@@ -106,8 +106,8 @@ const SITES = {
       accent: '#FFCD00',
       accentLight: '#FFF8DC',
     },
-    heroSlides: 0,
-    heroExtensions: [],
+    heroSlides: 5,
+    heroExtensions: ['jpg', 'PNG', 'jpg', 'jpeg', 'jpeg'],
     stats: [
       { count: 337183, i18nLabel: 'stats.residentsLabel', i18nSource: 'stats.residentsSource', rank: false },
       { count: 107807, i18nLabel: 'stats.studentsLabel', i18nSource: 'stats.studentsSource', rank: false },
