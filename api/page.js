@@ -50,6 +50,21 @@ var SITES_OG = {
       news:      { title: 'Tin tức mới nhất - VietKo', desc: 'Tin tức mới nhất cho người Việt tại Hàn Quốc: thay đổi chính sách, thông tin visa, lịch thi.' },
       community: { title: 'Cộng đồng người Việt tại Hàn Quốc - VietKo', desc: 'Diễn đàn cộng đồng người Việt Nam tại Hàn Quốc. Chia sẻ thông tin, hỏi đáp và kinh nghiệm.' },
     }
+  },
+  malay: {
+    name: 'MalayKo',
+    locale: 'ms_MY',
+    domain: 'malay.koinfo.kr',
+    image: 'https://koinfo.kr/images/og-koinfo.png',
+    pages: {
+      index:     { title: 'MalayKo - Maklumat Lengkap untuk Rakyat Malaysia di Korea', desc: 'MalayKo menyediakan maklumat lengkap tentang pekerjaan, pendidikan, visa dan kehidupan di Korea Selatan untuk warganegara Malaysia.' },
+      study:     { title: 'Pendidikan & Pengajian di Korea - MalayKo', desc: 'Maklumat biasiswa, universiti, kursus bahasa Korea dan program pengajian untuk rakyat Malaysia. GKS, TOPIK.' },
+      work:      { title: 'Bekerja di Korea - MalayKo', desc: 'Panduan bekerja di Korea untuk rakyat Malaysia: EPS, visa kerja, hak pekerja, gaji minimum dan tip mencari pekerjaan.' },
+      visa:      { title: 'Visa & Undang-undang Korea - MalayKo', desc: 'Maklumat visa Korea untuk rakyat Malaysia: jenis visa, pembaharuan, pertukaran status, undang-undang imigresen.' },
+      life:      { title: 'Kehidupan di Korea - MalayKo', desc: 'Panduan kehidupan harian di Korea: perumahan, pengangkutan, kesihatan, makanan halal dan komuniti Malaysia.' },
+      news:      { title: 'Berita Terkini - MalayKo', desc: 'Berita terkini untuk rakyat Malaysia di Korea: perubahan dasar, maklumat visa, jadual peperiksaan.' },
+      community: { title: 'Komuniti Rakyat Malaysia di Korea - MalayKo', desc: 'Forum komuniti untuk warganegara Malaysia di Korea Selatan. Berkongsi maklumat, soal jawab dan pengalaman.' },
+    }
   }
 };
 

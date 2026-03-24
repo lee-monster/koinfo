@@ -30,6 +30,7 @@ module.exports = function handler(req, res) {
       { hreflang: 'id', href: 'https://indo.koinfo.kr/' },
       { hreflang: 'mn', href: 'https://mong.koinfo.kr/' },
       { hreflang: 'vi', href: 'https://viet.koinfo.kr/' },
+      { hreflang: 'ms', href: 'https://malay.koinfo.kr/' },
       { hreflang: 'x-default', href: 'https://koinfo.kr/' },
     ];
 

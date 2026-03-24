@@ -127,7 +127,7 @@ const SITES = {
     name: 'MalayKo',
     nameKo: '말코',
     lang: 'ms',
-    langLabel: 'Bahasa',
+    langLabel: 'Bahasa Melayu',
     flags: '🇲🇾🇰🇷',
     flagsSpaced: '🇲🇾 🇰🇷',
     faviconLetter: 'L',
@@ -319,6 +319,7 @@ function applySiteSEO(lang) {
     indo: { lang: 'id', domain: 'indo.koinfo.kr' },
     mong: { lang: 'mn', domain: 'mong.koinfo.kr' },
     viet: { lang: 'vi', domain: 'viet.koinfo.kr' },
+    malay: { lang: 'ms', domain: 'malay.koinfo.kr' },
   };
   var pagePath = pageId === 'index' ? '/' : '/' + pageId + '.html';
 
