@@ -55,7 +55,7 @@ var SITES_OG = {
     name: 'MalayKo',
     locale: 'ms_MY',
     domain: 'malay.koinfo.kr',
-    image: 'https://koinfo.kr/images/og-koinfo.png',
+    image: 'https://malay.koinfo.kr/images/og-malay.png',
     pages: {
       index:     { title: 'MalayKo - Maklumat Lengkap untuk Rakyat Malaysia di Korea', desc: 'MalayKo menyediakan maklumat lengkap tentang pekerjaan, pendidikan, visa dan kehidupan di Korea Selatan untuk warganegara Malaysia.' },
       study:     { title: 'Pendidikan & Pengajian di Korea - MalayKo', desc: 'Maklumat biasiswa, universiti, kursus bahasa Korea dan program pengajian untuk rakyat Malaysia. GKS, TOPIK.' },
