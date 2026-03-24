@@ -119,8 +119,9 @@ module.exports = function handler(req, res) {
 
   var ogUrl = 'https://' + site.domain + '/' + (page === 'index' ? '' : page + '.html');
 
-  // Inject OG tags into empty placeholders
+  // Replace {SITE} placeholder and inject OG tags
   html = html
+    .replace(/\{SITE\}/g, site.name)
     .replace(/<title>[^<]*<\/title>/, '<title>' + pageOG.title + '</title>')
     .replace(/<meta name="description" content="[^"]*">/, '<meta name="description" content="' + pageOG.desc + '">')
     .replace(/<meta property="og:title" content="">/, '<meta property="og:title" content="' + pageOG.title + '">')

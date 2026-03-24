@@ -2,7 +2,7 @@
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
     { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/(study|work|visa|life|news|community).html", "destination": "/api/page?page=$1" },
+    { "source": "/(index|study|work|visa|life|news|community).html", "destination": "/api/page?page=$1" },
     { "source": "/", "destination": "/api/page?page=index" }
   ],
   "headers": [
