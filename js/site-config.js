@@ -31,7 +31,7 @@ const SITES = {
     stats: [
       { count: 49000, i18nLabel: 'stats.residentsLabel', i18nSource: 'stats.residentsSource', rank: false },
       { count: 7500, i18nLabel: 'stats.studentsLabel', i18nSource: 'stats.studentsSource', rank: false },
-      { count: 130000, i18nLabel: 'stats.epsLabel', i18nSource: 'stats.epsSource', rank: false },
+      { count: 80000, i18nLabel: 'stats.epsLabel', i18nSource: 'stats.epsSource', rank: false },
       { count: 6, i18nLabel: 'stats.rankLabel', i18nSource: 'stats.rankSource', rank: true },
     ],
     suffixRank: { native: ' besar', ko: '위' },
@@ -71,7 +71,7 @@ const SITES = {
     stats: [
       { count: 57534, i18nLabel: 'stats.residentsLabel', i18nSource: 'stats.residentsSource', rank: false },
       { count: 15270, i18nLabel: 'stats.studentsLabel', i18nSource: 'stats.studentsSource', rank: false },
-      { count: 130000, i18nLabel: 'stats.epsLabel', i18nSource: 'stats.epsSource', rank: false },
+      { count: 80000, i18nLabel: 'stats.epsLabel', i18nSource: 'stats.epsSource', rank: false },
       { count: 4, i18nLabel: 'stats.rankLabel', i18nSource: 'stats.rankSource', rank: true },
     ],
     suffixRank: { native: '-р', ko: '위' },
@@ -111,7 +111,7 @@ const SITES = {
     stats: [
       { count: 337183, i18nLabel: 'stats.residentsLabel', i18nSource: 'stats.residentsSource', rank: false },
       { count: 107807, i18nLabel: 'stats.studentsLabel', i18nSource: 'stats.studentsSource', rank: false },
-      { count: 130000, i18nLabel: 'stats.epsLabel', i18nSource: 'stats.epsSource', rank: false },
+      { count: 80000, i18nLabel: 'stats.epsLabel', i18nSource: 'stats.epsSource', rank: false },
       { count: 2, i18nLabel: 'stats.rankLabel', i18nSource: 'stats.rankSource', rank: true },
     ],
     suffixRank: { native: ' lớn nhất', ko: '위' },
@@ -151,7 +151,7 @@ const SITES = {
     stats: [
       { count: 12000, i18nLabel: 'stats.residentsLabel', i18nSource: 'stats.residentsSource', rank: false },
       { count: 3500, i18nLabel: 'stats.studentsLabel', i18nSource: 'stats.studentsSource', rank: false },
-      { count: 130000, i18nLabel: 'stats.epsLabel', i18nSource: 'stats.epsSource', rank: false },
+      { count: 80000, i18nLabel: 'stats.epsLabel', i18nSource: 'stats.epsSource', rank: false },
       { count: 15, i18nLabel: 'stats.rankLabel', i18nSource: 'stats.rankSource', rank: true },
     ],
     suffixRank: { native: ' besar', ko: '위' },

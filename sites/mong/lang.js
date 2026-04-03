@@ -28,14 +28,14 @@ const translations = {
     "news.filterUrgent": "Яаралтай",
 
     // Stats
-    "stats.mongoliansLabel": "Солонгос дахь Монголчууд (2025.3)",
+    "stats.mongoliansLabel": "Солонгос дахь Монголчууд (2026)",
     "stats.mongoliansSource": "Гадаад хэргийн яам",
-    "stats.studentsLabel": "Монгол оюутнууд (2025)",
+    "stats.studentsLabel": "Монгол оюутнууд (2026)",
     "stats.studentsSource": "Боловсролын яам",
-    "stats.epsLabel": "2025 E-9 квот",
+    "stats.epsLabel": "2026 E-9 квот",
     "stats.epsSource": "Хөдөлмөрийн яам",
     "stats.rankLabel": "Оюутны тоогоор (улсаар)",
-    "stats.rankSource": "2025 статистик",
+    "stats.rankSource": "2026 статистик",
 
     // Services
     "services.title": "Үйлчилгээнүүд",
@@ -85,7 +85,7 @@ const translations = {
     "study.universities.title": "🏫 Их сургуулиуд",
     "study.universities.desc": "Солонгосын шилдэг их сургуулиуд болон тэдний онцлог",
     "study.universities.content": `
-      <h4>Шилдэг их сургуулиуд (2025 жагсаалт)</h4>
+      <h4>Шилдэг их сургуулиуд (2026 жагсаалт)</h4>
       <table>
         <tr><th>Байр</th><th>Сургууль</th><th>Байршил</th><th>Онцлог</th></tr>
         <tr><td>1</td><td>Сөүлийн Үндэсний Их Сургууль (SNU)</td><td>Сөүл</td><td>Судалгаа, нийгмийн шинжлэх ухаан</td></tr>
@@ -161,7 +161,7 @@ const translations = {
           </ul>
         </li>
         <li><strong>Ажиллах эрх:</strong> 6 сар дараа, долоонд 20 цаг хүртэл (амралтын үед хязгааргүй)</li>
-        <li><strong>🆕 2025 шинэчлэлт:</strong> TOPIK 4+ түвшинтэй оюутнууд долоонд 25 цаг хүртэл ажиллах боломжтой болсон</li>
+        <li><strong>🆕 2026 шинэчлэлт:</strong> TOPIK 4+ түвшинтэй оюутнууд долоонд 25 цаг хүртэл ажиллах боломжтой. Цагийн хөлс 10,320₩ (2026)</li>
         <li><strong>Ажил эрхлэх зөвшөөрөл:</strong> 출입국관리사무소-д хандаж зөвшөөрөл авна</li>
       </ul>
     `,
@@ -221,16 +221,17 @@ const translations = {
     "study.topik2026.title": "📅 2026 TOPIK хуваарь",
     "study.topik2026.desc": "2026 оны TOPIK шалгалтын хуваарь",
     "study.topik2026.content": `
-      <h4>2026 TOPIK шалгалтын хуваарь</h4>
+      <h4>2026 TOPIK PBT шалгалтын хуваарь</h4>
       <table>
-        <tr><th>Удаа</th><th>Бүртгэл</th><th>Шалгалт</th><th>Үр дүн</th></tr>
-        <tr><td>89-р</td><td>2025.12~2026.1</td><td>2026.1</td><td>2026.2</td></tr>
-        <tr><td>90-р</td><td>2026.2~3</td><td>2026.4</td><td>2026.5</td></tr>
-        <tr><td>91-р</td><td>2026.3~4</td><td>2026.5</td><td>2026.6</td></tr>
-        <tr><td>92-р</td><td>2026.5~6</td><td>2026.7</td><td>2026.8</td></tr>
-        <tr><td>93-р</td><td>2026.8~9</td><td>2026.10</td><td>2026.11</td></tr>
-        <tr><td>94-р</td><td>2026.9~10</td><td>2026.11</td><td>2026.12</td></tr>
+        <tr><th>Удаа</th><th>Шалгалтын өдөр</th></tr>
+        <tr><td>104-р</td><td>2026.1.11 (Ням)</td></tr>
+        <tr><td>105-р</td><td>2026.4.11-12 (Бямба-Ням)</td></tr>
+        <tr><td>106-р</td><td>2026.5.17 (Ням)</td></tr>
+        <tr><td>107-р</td><td>2026.7.12 (Ням)</td></tr>
+        <tr><td>108-р</td><td>2026.10.18 (Ням)</td></tr>
+        <tr><td>109-р</td><td>2026.11.15 (Ням)</td></tr>
       </table>
+      <p><strong>📌 TOPIK IBT:</strong> Жилд 6 удаа интернэтээр шалгалт өгөх боломжтой. <a href="https://www.topik.go.kr" target="_blank">topik.go.kr</a>-д бүртгүүлнэ.</p>
       <p><strong>Зөвлөгөө:</strong> Их сургуулийн элсэлтэд TOPIK 3+ шаардлагатай, тэтгэлэгт 5+ шаардлагатай.</p>
     `,
 
@@ -299,7 +300,7 @@ const translations = {
       <h4>Үндсэн хөдөлмөрийн нөхцөл (2026)</h4>
       <ul>
         <li><strong>Хамгийн бага цалин:</strong> <strong>10,320₩/цаг</strong> (2026), сарын 2,156,880₩ (209 цаг)</li>
-        <li><strong>2025 оны цалин:</strong> 10,030₩/цаг, сарын 2,096,270₩</li>
+        <li><strong>2025 оны цалин:</strong> 10,030₩/цаг, сарын 2,096,270₩ (лавлагаа)</li>
         <li><strong>Ажлын цаг:</strong> Долоонд 40 цаг (өдөрт 8 цаг)</li>
         <li><strong>Илүү цагийн хөлс:</strong> 1.5 дахин (шөнийн 2 дахин)</li>
         <li><strong>Амралт:</strong> 1 жил ажилласны дараа 15 хоног цалинтай амралт</li>
@@ -792,8 +793,8 @@ const translations = {
       </ul>
       <h4>Метро / Автобус</h4>
       <ul>
-        <li><strong>Метро (2025.6.28~):</strong> 1,550₩ (T-money), 1,650₩ (бэлэн мөнгө) — Сөүл бүсэд</li>
-        <li><strong>Автобус (2026):</strong> 1,200₩ ~ 2,500₩</li>
+        <li><strong>Метро (2026):</strong> 1,550₩ (T-money), 1,650₩ (бэлэн мөнгө) — Сөүл бүсэд</li>
+        <li><strong>Автобус (2026):</strong> 1,500₩ ~ 2,500₩</li>
         <li><strong>Ажиллах цаг:</strong> 05:30 ~ 24:00</li>
         <li><strong>Апп:</strong> Naver Map, KakaoMap (чиглэл хайх)</li>
       </ul>
@@ -811,7 +812,7 @@ const translations = {
       <ul>
         <li><strong>Заавал даатгал:</strong> 6 сар+ оршин суугчид заавал элсэнэ</li>
         <li><strong>Сарын хураамж (2026):</strong> ~142,280₩ (даатгалын хувь 7.19%)</li>
-        <li><strong>2025 хураамж:</strong> ~130,000₩</li>
+        <li><strong>2025 хураамж:</strong> ~130,000₩ (лавлагаа)</li>
         <li><strong>Хамрах хүрээ:</strong> Эмнэлэг, эм, шүд (хэсэгчлэн), нүд</li>
         <li><strong>Өөрийн хариуцах:</strong> 20-60% (эмнэлгийн төрлөөс хамаарна)</li>
       </ul>
@@ -1100,7 +1101,7 @@ const translations = {
     "news.sourceLabel": "Эх сурвалж",
 
     // Stats aliases
-    "stats.residentsLabel": "Солонгос дахь Монголчууд (2025.3)",
+    "stats.residentsLabel": "Солонгос дахь Монголчууд (2026)",
     "stats.residentsSource": "Гадаад хэргийн яам",
 
     // SEO
@@ -1153,14 +1154,14 @@ const translations = {
     "news.filterUrgent": "긴급",
 
     // Stats
-    "stats.mongoliansLabel": "재한 몽골인 (2025.3)",
+    "stats.mongoliansLabel": "재한 몽골인 (2026)",
     "stats.mongoliansSource": "외교부",
-    "stats.studentsLabel": "몽골 유학생 (2025)",
+    "stats.studentsLabel": "몽골 유학생 (2026)",
     "stats.studentsSource": "교육부",
-    "stats.epsLabel": "2025 E-9 쿼터",
+    "stats.epsLabel": "2026 E-9 쿼터",
     "stats.epsSource": "고용노동부",
     "stats.rankLabel": "유학생 국적별 순위",
-    "stats.rankSource": "2025 교육기본통계",
+    "stats.rankSource": "2026 교육기본통계",
 
     // Services
     "services.title": "서비스",
@@ -1210,7 +1211,7 @@ const translations = {
     "study.universities.title": "🏫 대학교",
     "study.universities.desc": "한국의 우수 대학교 및 특징",
     "study.universities.content": `
-      <h4>주요 대학교 (2025 기준)</h4>
+      <h4>주요 대학교 (2026 기준)</h4>
       <table>
         <tr><th>순위</th><th>대학교</th><th>위치</th><th>특징</th></tr>
         <tr><td>1</td><td>서울대학교 (SNU)</td><td>서울</td><td>연구, 사회과학</td></tr>
@@ -1267,7 +1268,7 @@ const translations = {
         <li><strong>기간:</strong> 6개월 ~ 2년 (연장 가능)</li>
         <li><strong>필요 서류:</strong> 입학허가서, 재정증명, 여권, 신청서, 수수료 (~$60)</li>
         <li><strong>아르바이트:</strong> 6개월 후, 주 20시간 (방학 무제한)</li>
-        <li><strong>🆕 2025 변경:</strong> TOPIK 4급 이상 소지 시 주 25시간까지 근무 가능</li>
+        <li><strong>🆕 2026 변경:</strong> TOPIK 4급 이상 소지 시 주 25시간까지 근무 가능. 시급 10,320원 (2026)</li>
         <li><strong>취업허가:</strong> 출입국관리사무소에서 체류외활동허가 필요</li>
       </ul>
     `,
@@ -1317,16 +1318,17 @@ const translations = {
     "study.topik2026.title": "📅 2026 TOPIK 일정",
     "study.topik2026.desc": "2026년 TOPIK 시험 일정",
     "study.topik2026.content": `
-      <h4>2026 TOPIK 시험 일정</h4>
+      <h4>2026 TOPIK PBT 시험 일정</h4>
       <table>
-        <tr><th>회차</th><th>접수</th><th>시험</th><th>성적</th></tr>
-        <tr><td>89회</td><td>2025.12~2026.1</td><td>2026.1</td><td>2026.2</td></tr>
-        <tr><td>90회</td><td>2026.2~3</td><td>2026.4</td><td>2026.5</td></tr>
-        <tr><td>91회</td><td>2026.3~4</td><td>2026.5</td><td>2026.6</td></tr>
-        <tr><td>92회</td><td>2026.5~6</td><td>2026.7</td><td>2026.8</td></tr>
-        <tr><td>93회</td><td>2026.8~9</td><td>2026.10</td><td>2026.11</td></tr>
-        <tr><td>94회</td><td>2026.9~10</td><td>2026.11</td><td>2026.12</td></tr>
+        <tr><th>회차</th><th>시험일</th></tr>
+        <tr><td>104회</td><td>2026.1.11 (일)</td></tr>
+        <tr><td>105회</td><td>2026.4.11-12 (토-일)</td></tr>
+        <tr><td>106회</td><td>2026.5.17 (일)</td></tr>
+        <tr><td>107회</td><td>2026.7.12 (일)</td></tr>
+        <tr><td>108회</td><td>2026.10.18 (일)</td></tr>
+        <tr><td>109회</td><td>2026.11.15 (일)</td></tr>
       </table>
+      <p><strong>📌 TOPIK IBT:</strong> 연 6회 인터넷 기반 시험 응시 가능. <a href="https://www.topik.go.kr" target="_blank">topik.go.kr</a>에서 접수.</p>
       <p><strong>참고:</strong> 대학 입학에 TOPIK 3급 이상 필요, 장학금에는 5급 이상 필요.</p>
     `,
 
@@ -1389,7 +1391,7 @@ const translations = {
       <h4>근로 조건 (2026)</h4>
       <ul>
         <li><strong>최저임금:</strong> <strong>10,320원/시간</strong> (2026), 월 2,156,880원 (209시간)</li>
-        <li><strong>2025 최저임금:</strong> 10,030원/시간, 월 2,096,270원</li>
+        <li><strong>2025 최저임금:</strong> 10,030원/시간, 월 2,096,270원 (참고)</li>
         <li><strong>근무시간:</strong> 주 40시간</li>
         <li><strong>연장근로:</strong> 1.5배 (야간 2배)</li>
         <li><strong>연차:</strong> 1년 근무 후 15일 유급휴가</li>
@@ -1860,8 +1862,8 @@ const translations = {
       </ul>
       <h4>요금</h4>
       <ul>
-        <li>지하철 (2025.6.28~): 1,550원 (T-money) — 수도권 기준</li>
-        <li>버스 (2026): 1,200~2,500원</li>
+        <li>지하철 (2026): 1,550원 (T-money), 1,650원 (현금) — 수도권 기준</li>
+        <li>버스 (2026): 1,500~2,500원</li>
         <li>운행시간: 05:30~24:00</li>
       </ul>
     `,
@@ -1873,7 +1875,7 @@ const translations = {
       <ul>
         <li>6개월 이상 체류 시 의무 가입</li>
         <li><strong>월 보험료 (2026):</strong> ~142,280원 (보험료율 7.19%)</li>
-        <li><strong>2025 보험료:</strong> ~130,000원</li>
+        <li><strong>2025 보험료:</strong> ~130,000원 (참고)</li>
         <li>본인부담: 20-60%</li>
       </ul>
       <h4>응급전화</h4>
@@ -2149,7 +2151,7 @@ const translations = {
     "seo.community.desc": "재한 몽골인 커뮤니티 게시판. 정보 공유, 질문, 경험담을 나누세요.",
 
     // Stats aliases
-    "stats.residentsLabel": "재한 몽골인 (2025.3)",
+    "stats.residentsLabel": "재한 몽골인 (2026)",
     "stats.residentsSource": "외교부",
 
     // Footer origin alias
