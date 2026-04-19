@@ -929,6 +929,65 @@ const translations = {
       </ul>
     `,
 
+    "life.halal.title": "🕌 Халал хүнсний дэлгүүр",
+    "life.halal.desc": "Солонгос дахь халал хүнс худалдан авах газрууд",
+    "life.halal.content": `
+      <h4>Солонгос дахь халал хүнс</h4>
+      <p>Монгол казак үндэстэн болон бусад мусульман хүмүүст зориулсан халал хүнсний худалдааны газрын мэдээлэл.</p>
+
+      <h4>🏙️ Сөүл - Итэвон (이태원)</h4>
+      <p><strong>Сөүлийн Төв Сүм</strong> (서울중앙성원) орчмын Усадан-ро гудамж нь Солонгос улсын хамгийн том халал худалдааны бүс юм.</p>
+      <ul>
+        <li><strong>Foreign Food Mart:</strong> Халал мах, Дундад Дорнодын амтлагч</li>
+        <li><strong>Salam Bakery &amp; Mart:</strong> Халал талх, мах, сүүн бүтээгдэхүүн</li>
+        <li><strong>Eid Mart / EOS Mart:</strong> Өмнөд Ази, Араб амтлагч</li>
+        <li><strong>Islam Mart:</strong> Шинэ халал мах, Сөүлд хүргэлт</li>
+      </ul>
+      <p>🚇 <strong>Очих зам:</strong> 6-р шугамын Итэвон өртөөний 3-р гарц → 5 минут алхаад сүмд хүрнэ</p>
+
+      <h4>🏭 Ансан олон соёлт гудамж (안산 다문화거리)</h4>
+      <ul>
+        <li><strong>Warung Halal Asia:</strong> Халал тахиа, хонь, үхрийн мах</li>
+        <li><strong>Islamic Grocery Ansan:</strong> Амтлагч, басмати будаа, лооль</li>
+        <li><strong>Зүүн Өмнөд Азийн дэлгүүр:</strong> Цагаан гаа, самбал, кокосын сүү</li>
+      </ul>
+      <p>🚇 4-р шугамын Ансан өртөөний 2-р гарц → Вонгок-дон</p>
+
+      <h4>💻 Онлайн худалдаа</h4>
+      <table>
+        <tr><th>Платформ</th><th>Хайх арга</th></tr>
+        <tr><td>Coupang (쿠팡)</td><td>"할랄" эсвэл "halal" гэж хайх</td></tr>
+        <tr><td>Gmarket</td><td>Halal Food ангилал</td></tr>
+        <tr><td>Hankook Halal</td><td>hankookhalal.com</td></tr>
+        <tr><td>Halal Food Korea</td><td>halalfoodkorea.com - Австрали/ШЗ-аас оруулсан мах</td></tr>
+      </table>
+
+      <h4>🛒 Халал бүтээгдэхүүнтэй Солонгосын супермаркет</h4>
+      <ul>
+        <li><strong>E-Mart (이마트):</strong> Ёнсан, Вансимни салбарт гадаад бүтээгдэхүүний булан</li>
+        <li><strong>Lotte Mart Сөүл өртөө:</strong> Халал/Зүүн Өмнөд Азийн тавиур</li>
+        <li><strong>Costco:</strong> Шинэ Зеландаас оруулсан халал үхрийн мах</li>
+      </ul>
+
+      <h4>✅ Халал эсэхийг шалгах зөвлөмж</h4>
+      <ul>
+        <li><strong>KMF лого:</strong> Солонгосын албан ёсны халал гэрчилгээ</li>
+        <li><strong>JAKIM лого:</strong> Малайзын гэрчилгээ (маш найдвартай)</li>
+        <li><strong>MUI лого:</strong> Индонезийн гэрчилгээ</li>
+        <li><strong>Болгоомжил:</strong> 돼지 (гахайн мах), 주정/알코올 (архи), 미림/맛술 (хоол хийх архи)</li>
+        <li><strong>Мах:</strong> "HALAL" эсвэл "할랄" тэмдэгтэй байх ёстой</li>
+      </ul>
+
+      <h4>📱 Ашигтай аппликейшн</h4>
+      <ul>
+        <li><strong>Halal Korea:</strong> Халал ресторан, дэлгүүр хайх</li>
+        <li><strong>Crescent Rating:</strong> Мусульманчуудад ээлтэй аяллын гарын авлага</li>
+        <li><strong>Muslim Pro:</strong> Мөргөлийн цаг, Кибла чиглэл</li>
+      </ul>
+
+      <p>💡 <strong>Зөвлөгөө:</strong> Итэвон, Ансанаас хол амьдардаг бол онлайн худалдаа хялбар. Халал махыг их хэмжээгээр худалдаж аваад хөлдөөх нь 3-6 сар хадгалагдана.</p>
+    `,
+
     // ========== Life Page - Community & Support Section ==========
     "life.communitySection": "Коммунити & Тусламжийн төв",
     "life.embassy.title": "🏛️ Элчин сайдын яам",
@@ -1971,6 +2030,65 @@ const translations = {
         <li>큰 금액은 은행 송금이 안전</li>
         <li>GME, SentBe 앱 설치 후 환율 모니터링 가능</li>
       </ul>
+    `,
+
+    "life.halal.title": "🕌 할랄 식재료 구매처",
+    "life.halal.desc": "한국에서 할랄 식품 살 수 있는 곳",
+    "life.halal.content": `
+      <h4>한국 할랄 식재료 구매 안내</h4>
+      <p>몽골계 카자흐 등 이슬람 신자이거나 할랄 식품이 필요한 분들을 위한 한국 내 구매처 안내입니다.</p>
+
+      <h4>🏙️ 서울 - 이태원</h4>
+      <p>용산구 우사단로의 <strong>서울중앙성원</strong> 주변은 한국 최대 할랄 상권입니다.</p>
+      <ul>
+        <li><strong>외국식품마트 (Foreign Food Mart):</strong> 할랄 정육, 중동 향신료</li>
+        <li><strong>Salam Bakery &amp; Mart:</strong> 할랄 빵, 육류, 유제품</li>
+        <li><strong>Eid Mart / EOS Mart:</strong> 남아시아·아랍 향신료</li>
+        <li><strong>Islam Mart:</strong> 신선 할랄 정육, 서울 배송</li>
+      </ul>
+      <p>🚇 <strong>교통:</strong> 6호선 이태원역 3번 출구 → 서울중앙성원까지 도보 5분</p>
+
+      <h4>🏭 안산 다문화거리</h4>
+      <ul>
+        <li><strong>Warung Halal Asia:</strong> 할랄 닭·양·소고기</li>
+        <li><strong>Islamic Grocery 안산:</strong> 향신료, 바스마티 쌀, 대추야자</li>
+        <li><strong>동남아시아 마트:</strong> 간장, 삼발, 코코넛밀크</li>
+      </ul>
+      <p>🚇 4호선 안산역 2번 출구 → 원곡동</p>
+
+      <h4>💻 온라인 쇼핑</h4>
+      <table>
+        <tr><th>플랫폼</th><th>검색 방법</th></tr>
+        <tr><td>쿠팡 (Coupang)</td><td>"할랄" / "halal" 검색</td></tr>
+        <tr><td>G마켓</td><td>할랄 식품 카테고리</td></tr>
+        <tr><td>한국할랄</td><td>hankookhalal.com</td></tr>
+        <tr><td>Halal Food Korea</td><td>halalfoodkorea.com - 호주/NZ 수입육</td></tr>
+      </table>
+
+      <h4>🛒 할랄 제품 취급 한국 대형마트</h4>
+      <ul>
+        <li><strong>이마트:</strong> 용산·왕십리 외국식품 코너</li>
+        <li><strong>롯데마트 서울역점:</strong> 할랄/동남아 코너</li>
+        <li><strong>코스트코:</strong> 뉴질랜드산 할랄 소고기</li>
+      </ul>
+
+      <h4>✅ 할랄 확인 팁</h4>
+      <ul>
+        <li><strong>KMF 로고:</strong> 한국이슬람교중앙회 공식 할랄 인증</li>
+        <li><strong>JAKIM 로고:</strong> 말레이시아 인증 (신뢰도 높음)</li>
+        <li><strong>MUI 로고:</strong> 인도네시아 인증</li>
+        <li><strong>주의:</strong> 돼지, 주정/알코올, 미림/맛술 기피</li>
+        <li><strong>육류:</strong> "HALAL" 또는 "할랄" 표시 필수</li>
+      </ul>
+
+      <h4>📱 유용한 앱</h4>
+      <ul>
+        <li><strong>Halal Korea:</strong> 할랄 식당·상점 검색</li>
+        <li><strong>Crescent Rating:</strong> 무슬림 친화 가이드</li>
+        <li><strong>Muslim Pro:</strong> 예배 시간·키블라 방향</li>
+      </ul>
+
+      <p>💡 <strong>팁:</strong> 이태원·안산에서 먼 경우 온라인이 편리합니다. 할랄 육류는 냉동 보관 시 3-6개월 유지됩니다.</p>
     `,
 
     // ========== Life Page - Community & Support Section ==========
